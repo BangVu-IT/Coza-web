@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { productController } from '../../controller/ProductController';
 import { getDataLocal } from '../../model/DataLocal';
 import { Cart, Order } from '../../model/Order';
@@ -58,7 +59,9 @@ export default function Delivery() {
                         <input type="text" className="btn" onChange={e => { setdataOrder({ ...dataOrder, address: e.target.value }) }} />
                         <label>Mã bưu điện</label>
                         <input type="text" className="btn" onChange={e => { setdataOrder({ ...dataOrder, postcode: e.target.value }) }} />
-                        <button onClick={Purchase} className="btn-primary">Mua hàng</button>
+                        <Link to="/user/orders">
+                            <button onClick={Purchase} className="btn-primary">Mua hàng</button>
+                        </Link>
                     </div>
                 </div>
             </div>

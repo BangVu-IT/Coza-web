@@ -7,7 +7,7 @@ import WareHouse from './page/ware-house/WareHouse';
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import ProductDetails from './page/product-details/ProductDetails';
 import Delivery from './page/cart-page/Delivery';
-import Order from './page/cart-page/Order';
+import OrderProduct from './page/cart-page/OrderProduct';
 
 export default function App() {
   return (
@@ -20,7 +20,7 @@ export default function App() {
         <Route path="/product/:idProduct" element={<ProductDetails />} />
         <Route path="/checkout/cart" element={<CartPage />} />
         <Route path="/checkout/delivery" element={<Delivery />} />
-        <Route path="/user/orders" element={<Order />} />
+        <Route path="/user/orders" element={<OrderProduct />} />
       </Routes>
 
       <Footer />

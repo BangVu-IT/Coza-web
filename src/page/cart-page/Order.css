@@ -19,12 +19,111 @@ ul{
 
 .order-container {
     background-color: #ddd;
+    min-height: 400px;
+    padding-bottom: 20px;
+    padding-top: 30px;
 }
 
+.item-list-product {    
+    max-width: 70%;
+    display: block;
+    background-color: #ffffff;        
+    margin: auto;    
+    margin-bottom: 20px;
+    border-radius: 2px;
+}
+
+/* Thông tin người dùng, ngày order */
 .input-information {
-    padding-top: 40px;
+    text-align: right;
+    height: 80px;
+    border-bottom: 1px solid #ddd;
+    padding-top: 22px;
+    padding-right: 20px;
+    font-size: 14px;
+}
+
+.order-time {
+    font-weight: 350;
+}
+
+.basic-information {
+    margin-top: 5px;
+    font-weight: 350;
+}
+
+/* Thông tin sản phẩm */
+.product-information {
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
+    border-bottom: 1px solid #ddd;
+    align-items: center;
+}
+
+.item-product-left {
+    width: 100%;
+}
+
+.image-product img {
+    width: 60%;
+    padding: 30px 0px;
+}
+
+.image-product {
+    margin-left: 30px;
+}
+
+.name-product {
+    width: 50%;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.quantily {
+    margin-top: 10px;
+    font-weight: 500;
+}
+
+.price-product {
+    color: #C89979;
+    font-size: 18px;
+    font-weight: 440;
+}
+
+.total-money {
+    display: grid;
+    grid-template-columns: 4fr 4fr;
+    align-items: center;
+    padding: 30px 0px;
+}
+
+.estimated-cost {
+    margin-left: 20px;
+}
+
+.title-estimated-cost {
+    font-size: 14px;
+    font-weight: 350;
+    margin-right: 10px;    
+}
+
+.value-estimated-cost {
+    color: #C89979;
+    font-weight: 500;
 }
 
 .into-money {
-    padding-bottom: 30px;
+    text-align: right;
+}
+
+.value-into-money {    
+    margin-right: 20px;
+    color: #C89979;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.title-into-money {
+    margin-right: 10px;
+    font-weight: 350;
 }

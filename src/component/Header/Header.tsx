@@ -55,7 +55,7 @@ export default function Header() {
                             <Link to='#' className="title-item-menu-cap-1">BLOGS</Link>
                         </li>
                         <li className="item-menu-cap-1">
-                            <Link to='/user/orders' className="title-item-menu-cap-1">LIÊN HỆ</Link>
+                            <Link to='#' className="title-item-menu-cap-1">LIÊN HỆ</Link>
                         </li>
                         <button className="dong-menu-on-mobie"><i id="icon-dong-menu" className="fas fa-times" />Đóng</button>
                     </ul>

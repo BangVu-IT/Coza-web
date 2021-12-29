@@ -58,7 +58,7 @@ class ProductController {
         return axios.post('http://localhost:5000/checkout/delivery', {dataOrder})
     }
 
-    async listOrder(): Promise<Order[]> {
+    async listOrder() {
         return axios.get('http://localhost:5000/orders')
             .then(res => {
                 return res.data;
