@@ -1,5 +1,4 @@
 import axios from "axios";
-import { Cart } from "../model/Cart";
 import { Order } from "../model/Order";
 import { Product } from "../model/Product";
 

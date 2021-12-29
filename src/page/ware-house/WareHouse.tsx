@@ -50,7 +50,7 @@ export default function WareHouse() {
         productController.search(inputValue).then(res => {
             setValue(res);
         })
-    }    
+    }
     
     return (
         <div className="container-chung">
