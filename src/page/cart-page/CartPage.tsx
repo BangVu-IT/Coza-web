@@ -47,7 +47,11 @@ export default function CartPage() {
         setValue(filterCart);
     }
 
+    console.log(value);
+    
+
     return (
+        value.length != 0 ? 
         <div className="cart-container">
             <div className="danh-sach-mua">
                 <div className="container">
@@ -88,6 +92,21 @@ export default function CartPage() {
                     <button>Đặt hàng</button>
                 </Link>
             </div>
+        </div>
+        :
+        <div className="cart-is-empty">
+            <div className="image-empty-cart">
+                <img src="https://beemall.io/search.png" alt="" />
+            </div>
+            <div className="title-empty-cart">
+                <h5>Giỏ hàng trống!</h5>
+            </div>
+            <div className="desc-empty-cart">
+                <p>Vui lòng thêm sản phẩm vào giỏ hàng trước khi thanh toán!</p>
+            </div>
+            <Link to='/' className="btn-keep-buying">
+                <button>Tiếp tục mua hàng!</button>
+            </Link>
         </div>
     )
 }
