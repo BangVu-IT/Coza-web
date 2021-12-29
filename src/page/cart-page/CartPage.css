@@ -1,0 +1,207 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body, span{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+ul{
+    list-style: none;
+}
+
+/* Danh sách sản phẩm */
+.cart-container {    
+    min-height: 450px;
+    background-color: #ddd;
+}
+
+.danh-sach-mua {
+    padding-top: 30px;
+}
+
+.danh-sach-mua .container{
+    background-color: #ffffff;        
+    border-radius: 5px;
+    width: 70%;
+    margin: auto;    
+}
+
+.danh-sach-mua .title{
+    font-size: 20px;
+    color: #C89979;
+    font-weight: 600;
+}
+
+.danh-sach-mua .item-danh-sach-mua{
+    display: flex;
+    margin-left: 80px;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.danh-sach-mua .content{
+    padding: 20px 20px 5px 20px;
+}
+
+.danh-sach-mua .item-danh-sach{
+    padding: 20px 50px;
+}
+
+.danh-sach-mua .san-pham-mua{
+    display: flex;
+    height: 100px;
+    margin: 40px 0px;
+}
+
+.danh-sach-mua .anh-sp-mua img{
+    width: 70%;
+}
+
+.danh-sach-mua #carts .san-pham-mua {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 100px;
+}
+
+.danh-sach-mua #carts .san-pham-mua .item-sp{
+   display: flex;
+    text-align: center;
+}
+.danh-sach-mua #carts .san-pham-mua .item-sp img{
+    width: 80px;
+}
+.danh-sach-mua .san-pham-mua input{
+    width: 100px;
+    padding: 4px 0;
+    text-align: center;
+    border: 1px solid #333;
+    width: 50px;
+}
+
+.danh-sach-mua .san-pham-mua button{
+    width: 80%;
+    padding: 0 5px;
+    background-color: #C89979;
+    color:white;
+    border: 0px solid white;
+    margin-left: 2px;
+    border-radius: 3px;
+}
+
+.danh-sach-mua .san-pham-mua button:hover{
+    cursor: pointer;
+    background-color: #997157;
+    transition-duration: 0.5s;
+}
+
+.danh-sach-mua .gia-sp-mua{
+    margin-left: -20px;
+}
+
+.danh-sach-mua .anh-sp-mua{
+    margin-left: 50px;
+}
+
+.danh-sach-mua .gia-sp-mua{
+    margin-left: 60px;
+    width: 90px;
+}
+
+.danh-sach-mua .ten-sp-mua {
+    width: 100px;
+    margin-left: 100px;
+}
+
+.so-luong{
+    margin-left: 55px;
+}
+
+.thanh-toan {    
+    position: -webkit-sticky;
+    position: sticky;
+    bottom: 0;
+    background-color: #ffffff;        
+    border-radius: 2px;
+    width: 70%;
+    margin: auto;
+    margin-top: 20px;
+    height: 100px;
+    box-shadow: 0 0 10px 0px rgba(1, 1, 1, 0.5);    
+}
+
+.item-thanh-toan {
+    float: left;
+    margin-left: 90px;
+    margin-top: 30px;    
+}
+
+.btn-order {
+    float: right;
+    margin-top: 35px;
+    margin-right: 90px;    
+}
+
+.btn-order button {    
+    padding: 10px 80px;
+    background-color: #C89979;
+    border: 0;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 2px;
+}
+
+.btn-order button:hover {    
+    cursor: pointer;
+    background-color: #997157;
+}
+
+.tong-tien{
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #C89979;
+}
+
+.thao-tac{
+    margin-left: 130px;
+    width: 50px;
+}
+
+.danh-sach-mua input{
+    border-radius: 2px;
+}
+
+.danh-sach-mua input:focus{
+    border: 1px solid #C89979;
+    outline: none;
+}
+
+.danh-sach-mua .fas:hover{
+    color: #C89979;
+    cursor: pointer;
+    transition-duration: 0.1s;
+}
+
+.danh-sach-mua .tong-tien-thanh-toan{
+    margin-left: 120px;
+    color: #C89979;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.danh-sach-mua .title-tong-tien{
+    color: #C89979;
+    font-size: 18px;
+    font-weight: 700;
+    margin-left: 50px;
+}

@@ -1,0 +1,209 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+body, span{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+ul{
+    list-style: none;
+}
+
+.nav-bar{
+    background-color: #333333;
+    width: 100%;
+}
+
+/* menu top */
+.nav-bar .tai-khoan{
+    display: flex;
+    margin-left: 76%;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+
+.border-trai-dang-ki{
+    border-right: 1px solid #555555;
+    height: 20px;
+    padding: 8px;
+    margin-right: 20px;
+}
+
+.nav-bar .dang-nhap a:hover{
+    color: #C89979;
+    transition-duration: 0.5s;
+}
+
+.nav-bar .dang-ki a:hover{
+    color: #C89979;
+    transition-duration: 0.5s;
+}
+
+/* Menu mid */
+.nav-bar .menu-top{
+    max-width: 1300px;
+    margin: auto;
+    align-items: center;
+    display: flex;
+}
+
+.nav-bar .mid{
+    border-bottom: 1px solid #555555;
+    padding-bottom: 7px;
+}
+
+.nav-bar .logo img{
+    width: 100%;
+}
+
+.nav-bar .icon-menu-hien-thi{
+    display: none;
+}
+
+.nav-bar .logo{
+    width: 17%;
+    margin-top: 10px;
+}
+
+.nav-bar input{
+    padding: 12px 10px;
+    width: 400px;
+    margin-bottom: 20px;
+    border-radius: 4px 0 0 4px;
+    border: 0;
+}
+
+.nav-bar button{
+    padding: 8.5px 10px 12px 10px;
+    width: 65px;
+    border-radius: 0 4px 4px 0;
+    margin-left: -4.5px;
+    border: 0;
+}
+
+.nav-bar input, button{
+    display: inline-block;
+}
+
+.nav-bar .btn-primary:focus{
+    border: 0;
+    box-shadow: 0 0 4px white;
+    outline: none;
+}
+
+.nav-bar .btn{
+    background-color: #C89979;
+}
+
+.nav-bar .btn:focus{
+    border: 0;
+    outline: none;
+}
+
+.nav-bar .btn:hover{
+    background-color: #997157;
+    cursor: pointer;
+    transition-duration: 0.5s;
+}
+
+.nav-bar .fas{
+    font-size: 18px;
+    color: white;
+}
+
+.nav-bar .thanh-tim-kiem{
+    margin-left: 15%;
+    margin-top: 25px;
+}
+
+/* Giỏ hàng, kho hàng */
+.nav-bar .gio-hang{
+    margin-left: 15%;
+    margin-right: 25px;
+}
+
+.nav-bar .icon-gio-hang:hover{
+    color: #C89979;
+    transition-duration: 0.5s;
+}
+
+.nav-bar span{
+    margin-left: 4px;
+    font-weight: 400;
+    word-spacing: -1px;
+}
+
+.nav-bar .border-trai{
+    border-right: 1px solid #555555;
+    height: 30px;
+    padding: 0px;
+    margin-right: 20px;
+}
+
+.nav-bar .kho-hang span:hover{
+    color: #C89979;
+    transition-duration: 0.5s;
+}
+
+.kho-hang .fas:hover{
+    color: #C89979;
+    transition-duration: 0.5s;
+}
+
+/* Menu bottom */
+.menu-bottom{
+    background-color: #333333;
+    /* max-width: 1230px; */
+    margin: auto;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+  
+}
+
+.menu-bottom .thanh-tim-kiem-2{
+    display: none;
+}
+
+.menu-cap-1{
+    align-items: center;
+    display: flex;
+    margin: auto;
+}
+
+.item-menu-cap-1{
+    padding: 20px 30px;
+}
+
+.title-item-menu-cap-1{
+    font-size: 13px;
+    font-weight: 650;
+    line-height: 16px;
+    padding-bottom: 4px;
+}
+
+.title-item-menu-cap-1:hover{
+    color: #C89979;
+    border-bottom: 1px solid #C89979;
+    transition-duration: 0.4s;
+}
+
+.dong-menu-on-mobie{
+    display: none;
+}

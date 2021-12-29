@@ -1,0 +1,149 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.concat{
+    display: flex;
+}
+
+body, span{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+ul{
+    list-style: none;
+}
+
+.chi-tiet-san-pham{
+    background-color: #ffffff;
+}
+
+.sanpham {
+    display: inline-block;
+ 
+    margin-top: 130px;
+    width: 100%;
+    text-align: center;
+    padding: 0px 80px;
+}
+.sanpham .khoitrai{
+    float: left;
+    width: 50%;
+    text-align: left;
+    padding: 50px;
+}
+.sanpham .khoitrai .anh img{
+    width: 80%;
+    text-align: left;
+}
+.sanpham .khoitrai .anhphu img{
+    width: 20%;
+    border: 1px solid black;
+   
+}
+
+.sanpham .khoitrai .anhphu .anhphu1{
+    display: inline ;
+    margin-right: 3%;    
+    font-size: 39px;
+}
+
+.sanpham .khoitrai .anhphu .anhphu1 img:hover{
+    transition-duration: 0.5s;
+    transform: scale(1.4);
+}
+.sanpham .khoitrai .anhphu {
+    text-align: center;
+    margin-top: 1%;
+}
+
+.sanpham .khoiphai{
+    float: right;
+    text-align: left;
+    width: 50%;
+    padding: 40px;
+} 
+.sanpham .khoiphai h2{
+   margin-top: 20px;
+   font-size: 27px;
+}
+.sanpham .khoiphai h1{
+    margin-top: 20px;
+    border-top: 2px solid rgb(112, 112, 112);
+   
+    padding: 20px 0;
+}
+.sanpham .khoiphai input{
+    width: 8%;
+   padding: 9px 5px;
+   border: 0.1px solid rgb(141, 141, 141);
+   margin-right: 30px;
+}
+.sanpham .khoiphai button{
+    padding: 10px 40px;
+   font-size: 15px;
+   background-color: rgb(210,110,75);
+   border: 0;
+   color: white;
+}
+.sanpham .khoiphai button:hover{
+    background-color: rgb(168, 90, 62) ;
+    transition-duration: 0.5s;
+    cursor: pointer;
+}
+.sanpham .khoiphai a img{
+   height: 50px
+}
+
+.sanpham .khoiphai .ship{
+    width: 50%;
+    float: left;
+}
+.sanpham .khoiphai .ship p{
+    color: black;
+}
+.sanpham .khoiphai .tinh{
+    margin-top: 20px;
+}
+.sanpham .khoiphai .thanhtoan{
+    width: 50%;
+   float: right;
+}
+.sanpham .khoiphai .thanhtoan p{
+    color: black;
+}
+.sanpham .khoiphai .dk{
+    padding: 30% 0;
+}
+.sanpham .khoiphai .dk .masp{
+    margin-top: 30px;
+}
+.sanpham .khoiphai .dk h5{
+    color: black;
+    font-size: 17px;
+}
+.sanpham .khoiphai .dk p{
+    font-size: 12px;
+    line-height: 30px;
+   
+    border-top: 1px solid rgb(102, 102, 102);
+}
+.sanpham .khoiphai .dk button{
+    background-color: rgb(195,0,5);
+    margin-top: 30px;
+    padding: 10px 20px ;
+}
+.sanpham .khoiphai .dk button:hover{
+   background-color: rgb(141, 1, 6);;
+}
+
+.name-brance {
+    margin-top: 15px;
+}
