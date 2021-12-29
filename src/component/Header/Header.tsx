@@ -26,7 +26,7 @@ export default function Header() {
                         <div className="border-trai">
                         </div>
                         <div className="kho-hang">
-                            <Link to="/warehouse" className="icon-kho-hang fas fa-box-open fa-1x"> <span>Kho hàng</span></Link>
+                            <Link to="/user/orders" className="icon-kho-hang fas fa-box-open fa-1x"> <span>Đơn hàng</span></Link>
                         </div>
                     </div>
                     {/* border */}

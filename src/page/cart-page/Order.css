@@ -127,3 +127,38 @@ ul{
     margin-right: 10px;
     font-weight: 350;
 }
+
+/* empty orders */
+.orders-is-empty {    
+    text-align: center;
+    margin-top: 70px;
+    min-height: 380px;
+    color: rgb(85, 86, 85);
+}
+.image-empty-orders img {
+    width: 15%;
+}
+
+.title-empty-orders {
+    font-size: 28px;
+}
+
+.desc-empty-orders {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.btn-keep-buying-orders button {
+    padding: 11px 30px;
+    border-radius: 5px;
+    border: 0;
+    background-color: #C89979;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.btn-keep-buying-orders button:hover {
+    cursor: pointer;
+    background-color: #997157;    
+}
