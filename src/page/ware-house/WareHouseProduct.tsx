@@ -4,7 +4,7 @@ import { Product } from '../../model/Product';
 
 interface Props {
     product: Product[];
-    onRemove: (id:string) => void;
+    onRemove: (id: string) => void;
     onUpdate: (product: Product) => void;
     onSearch: (inputValue: string) => void;
 };

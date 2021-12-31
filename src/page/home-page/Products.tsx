@@ -20,7 +20,7 @@ export default function Products(props:Props) {
                     {props.product.brance}
                 </div>
                 <div className="gia-san-pham">
-                    {props.product.price} <span><u>đ</u></span>
+                    {props.product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} <span><u>đ</u></span>
                 </div>
                 <div className="them-vao-gio">
                     <button className="btn-san-pham">THÊM VÀO GIỎ</button>

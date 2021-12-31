@@ -323,18 +323,16 @@ ul{
     background-color: white;
 }
 
-.pageNumber {        
-    text-align: center;
-    margin-bottom: 60px;    
+.pageNumber {            
+    margin-bottom: 60px;
+    display: inline-flex;    
+    max-width: 100%;
+    margin-left: 43%;
 }
 
-.icon-left, .page-number, .icon-right {
-    display: inline-flex;
-}
-
-.fa-chevron-left {
-    padding-top: 20px;
-}
+/* .fa-chevron-left, .page-number, .fa-chevron-right {
+    display: inline-block;
+} */
 
 .pageNumber button {    
     width: 3%;
@@ -360,11 +358,12 @@ ul{
 
 .fa-chevron-left, .fa-chevron-right {    
     font-size: 20px;
-    color: rgb(107, 105, 105);   
+    color: rgb(107, 105, 105);    
 }
 
 .fa-chevron-left {
     margin-right: 10px;
+    margin-top: 4px;
 }
 
 .fa-chevron-left:hover {
@@ -373,6 +372,7 @@ ul{
 
 .fa-chevron-right {
     margin-left: 10px;
+    margin-top: 4px;
 }
 
 .fa-chevron-right:hover {

@@ -20,42 +20,47 @@ export default function WareHouse() {
     useEffect(() => {
         productController.listCart().then(res => {
             setValue(res);
+            console.log(value);
+            
         })
     }, [])
 
-    const onRemove = (id: string) => {
+    const onRemove = async (id: string) => {
         productController.delete(id).then(res => {
             setValue(res);
-        })
+        });
+        // setValue(value.filter(item => (
+        //     item.id != id
+        // )));
     }
 
-    const onAdd = (product: Product) => {        
-        if (data.id != '') {
-            productController.update(product).then(res => {                
+    const onAdd = (product: Product) => {
+        if (data.id != '') {                        
+            productController.update(product).then(res => {
                 setValue(res);
-            })
-        } else {
+            });            
+        } else {            
             productController.add(product).then(res => {
                 setValue(res);
-            })
-        }
+            });                       
+        }        
         setData({ id: '', image: '', name: '', brance: '', price: 0 })
     }
 
-    const onUpdate = (product: Product) => {        
+    const onUpdate = (product: Product) => {
         setData({ ...product });
     }
-    
-    const onSearch = (inputValue: string) => {        
+
+    const onSearch = (inputValue: string) => {
         productController.search(inputValue).then(res => {
             setValue(res);
         })
     }
-    
+
     return (
         <div className="container-chung">
             <FormInput key={uuidv4()} onAdd={onAdd} product={data} />
-            <WareHouseProduct product={value} onRemove={onRemove} onUpdate={onUpdate} onSearch={onSearch} />)
+            <WareHouseProduct key={uuidv4} product={value} onRemove={onRemove} onUpdate={onUpdate} onSearch={onSearch} />)
         </div>
     )
 }

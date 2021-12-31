@@ -23,7 +23,7 @@ export function ProductList(props: Props) {
                     {props.product.brance}
                 </div>
                 <div className="gia-sp">
-                    {props.product.price} <span><u>đ</u></span>
+                    {props.product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} <span><u>đ</u></span>
                 </div>
                 <div className="id-sp">
                 </div>

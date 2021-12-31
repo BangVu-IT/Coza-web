@@ -32,11 +32,11 @@ export default function ProductComponent(props: Props) {
             </div>
 
             <div className="pageNumber">
-                <div className="icon-left" onClick={props.prePage}><i className= {props.pageLimit + " fas fa-chevron-left"}></i></div>
+                <i onClick={props.prePage} className= {props.pageLimit + " fas fa-chevron-left"}></i>
                 <div className="page-number">
                     {props.countPage.map((item, index) => <button className={props.pageIndex == index + 1 ? "btn-page-number" : ""} onClick={() => props.onPageNumber(item)}>{item}</button>)}
                 </div>
-                <div className="icon-right" onClick={props.nextPage}><i className={props.pageLimitTop + " fas fa-chevron-right"}></i></div>
+                <i onClick={props.nextPage} className={props.pageLimitTop + " fas fa-chevron-right"}></i>
             </div>
         </div>
     )

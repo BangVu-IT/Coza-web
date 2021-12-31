@@ -19,7 +19,8 @@ ul{
 
 /* Form đăng kí */
 .container-form-dang-ki {
-    background-color: #ddd;    
+    background-color: #ddd;
+    padding-bottom: 20px;
 }
 
 .form-dang-ki{
