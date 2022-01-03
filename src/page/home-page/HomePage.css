@@ -325,14 +325,10 @@ ul{
 
 .pageNumber {            
     margin-bottom: 60px;
-    display: inline-flex;    
-    max-width: 100%;
-    margin-left: 43%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-
-/* .fa-chevron-left, .page-number, .fa-chevron-right {
-    display: inline-block;
-} */
 
 .pageNumber button {    
     width: 3%;
@@ -362,8 +358,7 @@ ul{
 }
 
 .fa-chevron-left {
-    margin-right: 10px;
-    margin-top: 4px;
+    margin-right: 10px;    
 }
 
 .fa-chevron-left:hover {
@@ -371,8 +366,7 @@ ul{
 }
 
 .fa-chevron-right {
-    margin-left: 10px;
-    margin-top: 4px;
+    margin-left: 10px;    
 }
 
 .fa-chevron-right:hover {

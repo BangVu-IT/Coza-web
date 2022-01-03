@@ -1,47 +1,32 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { productController } from '../../controller/ProductController';
 import { getDataLocal } from '../../model/DataLocal';
-import { Cart, Order } from '../../model/Order';
+import { User } from '../../model/User';
 import './Delivery.css';
 
-export default function Delivery() {
-
-    const [dataCart, setDataCart] = useState<Cart[]>(getDataLocal);    
-    const [dataOrder, setdataOrder] = useState<Order>({
-        idOrder: String(Math.random()),
-        createdAt: Date.now(),
-        fullname: "",
-        phonenumber: 0,
+export default function Delivery() {    
+    const [dataUser, setDataUser] = useState<User>({
+        fullName: "",
+        phoneNumber: 0,
         email: "",
         address: "",
         postcode: "",
-        cart: {
-            id: "",
-            image: "",
-            name: "",            
-            price: 0,
-            quantily: 0
-        }
     });
+    
+    const { idOrder } = useParams();
 
     const Purchase = () => {
-        let dataProductCart: Order;
-        for (let i = 0; i < dataCart.length; i++) {
-            dataProductCart = {
-                idOrder: String(Math.random()),
-                createdAt: Date.now(),
-                fullname: dataOrder.fullname,
-                phonenumber: dataOrder.phonenumber,
-                email: dataOrder.email,
-                address: dataOrder.address,
-                postcode: dataOrder.postcode,
-                cart: dataCart[i]
-            }
-            productController.delivery(dataProductCart)
-        }
+        let userInformation: User;
+        userInformation = {
+            fullName: dataUser.fullName,
+            phoneNumber: dataUser.phoneNumber,
+            email: dataUser.email,
+            address: dataUser.address,
+            postcode: dataUser.postcode,
+        };
+        productController.delivery(userInformation, String(idOrder))
     }
-
 
     return (
         <div className="container-form-dang-ki">
@@ -50,15 +35,15 @@ export default function Delivery() {
                     <h1 className="title-form-dang-ki">Mua hàng</h1>
                     <div className="form-showcase">
                         <label>Họ tên</label>
-                        <input type="text" className="btn" onChange={e => { setdataOrder({ ...dataOrder, fullname: e.target.value }) }} />
+                        <input type="text" className="btn" onChange={e => { setDataUser({ ...dataUser, fullName: e.target.value }) }} />
                         <label>Số điện thoại</label>
-                        <input type="number" className="btn" onChange={e => { setdataOrder({ ...dataOrder, phonenumber: Number(e.target.value) }) }} />
+                        <input type="number" className="btn" onChange={e => { setDataUser({ ...dataUser, phoneNumber: Number(e.target.value) }) }} />
                         <label>Email</label>
-                        <input type="email" className="btn" onChange={e => { setdataOrder({ ...dataOrder, email: e.target.value }) }} />
+                        <input type="email" className="btn" onChange={e => { setDataUser({ ...dataUser, email: e.target.value }) }} />
                         <label>Địa chỉ</label>
-                        <input type="text" className="btn" onChange={e => { setdataOrder({ ...dataOrder, address: e.target.value }) }} />
+                        <input type="text" className="btn" onChange={e => { setDataUser({ ...dataUser, address: e.target.value }) }} />
                         <label>Mã bưu điện</label>
-                        <input type="text" className="btn" onChange={e => { setdataOrder({ ...dataOrder, postcode: e.target.value }) }} />
+                        <input type="text" className="btn" onChange={e => { setDataUser({ ...dataUser, postcode: e.target.value }) }} />
                         <Link to="/user/orders">
                             <button onClick={Purchase} className="btn-primary">Mua hàng</button>
                         </Link>

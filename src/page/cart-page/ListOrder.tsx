@@ -10,7 +10,7 @@ export default function ListOrder(props: Props) {
         <div className="item-list-product">
             <div className="input-information">
                 <div className="order-time">
-                    {props.dataOrder.createdAt}
+                    {props.dataOrder.createat}
                 </div>
                 <div className="basic-information">
                     {props.dataOrder.fullname}, {props.dataOrder.phonenumber}, {props.dataOrder.email}, {props.dataOrder.address}, {props.dataOrder.postcode}
@@ -18,27 +18,27 @@ export default function ListOrder(props: Props) {
             </div>
             <div className="product-information">
                 <div className="image-product">
-                    <img src={props.dataOrder.cart.image} alt="" />
+                    <img src={props.dataOrder.image} alt="" />
                 </div>
                 <div className="name-quantily-information">
                     <div className="name-product">
-                        {props.dataOrder.cart.name}
+                        {props.dataOrder.name}
                     </div>
                     <div className="quantily">
-                        (x{props.dataOrder.cart.quantily})
+                        (x{props.dataOrder.quantity})
                     </div>
                 </div>
                 <div className="price-product">
-                    {props.dataOrder.cart.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} đ
+                    {props.dataOrder.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} đ
                 </div>
             </div>
             <div className="total-money">
                 <div className="estimated-cost">
-                    <span className="title-estimated-cost">Estimated cost: </span> <span className="value-estimated-cost">{(props.dataOrder.cart.price * props.dataOrder.cart.quantily).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} đ</span>
+                    <span className="title-estimated-cost">Estimated cost: </span> <span className="value-estimated-cost">{(props.dataOrder.price * props.dataOrder.quantity).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} đ</span>
                 </div>
                 <div className="into-money">
                     <span className="title-into-money">Total: </span> <span className="value-into-money">
-                        {(props.dataOrder.cart.price * props.dataOrder.cart.quantily).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} đ
+                        {(props.dataOrder.price * props.dataOrder.quantity).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} đ
                     </span>
                 </div>
             </div>

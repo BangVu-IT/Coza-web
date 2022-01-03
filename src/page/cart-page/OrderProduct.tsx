@@ -11,7 +11,7 @@ export default function OrderProduct() {
 
     useEffect(() => {
         productController.listOrder().then(res => {
-            setData(res);            
+            setData(res);
         })
     }, [])
 
@@ -21,8 +21,8 @@ export default function OrderProduct() {
         data.length != 0 ?
         <div className="order-container">
             {
-                data.map(item => (
-                    <ListOrder dataOrder={item} />
+                data.map((item, index) => (
+                    <ListOrder key={index} dataOrder={item} />
                 ))
             }
         </div>

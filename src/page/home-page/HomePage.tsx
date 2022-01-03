@@ -16,8 +16,8 @@ export default function HomePage() {
 
     useEffect(() => {
         productController.listHome(1, "", pageSize).then(res => {
-            setValue(res.productPage);
-            setpageCount(res.pageNumber);
+            setValue(res.arrProduct);
+            setpageCount(res.arrPageNumber);
         })
     }, [])
 
@@ -28,14 +28,14 @@ export default function HomePage() {
     const onPageNumber = (page: number) => {
         if (inputSearch != undefined) {
             productController.listHome(page, String(inputSearch), pageSize).then(res => {
-                setValue(res.productPage);
-                setpageCount(res.pageNumber);
+                setValue(res.arrProduct);
+                setpageCount(res.arrPageNumber);
                 setIndexPage(page);
             })
         }else {
             productController.listHome(page, "", pageSize).then(res => {
-                setValue(res.productPage);
-                setpageCount(res.pageNumber);
+                setValue(res.arrProduct);
+                setpageCount(res.arrPageNumber);
                 setIndexPage(page);
             })
         }
@@ -44,15 +44,15 @@ export default function HomePage() {
     const onSearch = (keyWord: string) => {
         if (keyWord != "") {
             productController.listHome(1, keyWord, pageSize).then(res => {
-                setValue(res.productPage);
-                setpageCount(res.pageNumber);
+                setValue(res.arrProduct);
+                setpageCount(res.arrPageNumber);
                 setIndexPage(1);
                 setInputSearch(keyWord);
             })
         } else {
             productController.listHome(1, "", pageSize).then(res => {
-                setValue(res.productPage);
-                setpageCount(res.pageNumber);
+                setValue(res.arrProduct);
+                setpageCount(res.arrPageNumber);
                 setIndexPage(1);
                 setInputSearch(keyWord);
             })
@@ -62,7 +62,7 @@ export default function HomePage() {
     const nextPage = () => {          
         if (indexPage < pageCount.length) {
             onPageNumber(indexPage + 1);
-            setIndexPage(indexPage + 1);            
+            setIndexPage(indexPage + 1);
         }
         
     }

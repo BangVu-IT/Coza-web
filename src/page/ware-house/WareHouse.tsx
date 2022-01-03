@@ -29,9 +29,6 @@ export default function WareHouse() {
         productController.delete(id).then(res => {
             setValue(res);
         });
-        // setValue(value.filter(item => (
-        //     item.id != id
-        // )));
     }
 
     const onAdd = (product: Product) => {

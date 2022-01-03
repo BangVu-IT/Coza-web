@@ -1,6 +1,7 @@
 import axios from "axios";
 import { Order } from "../model/Order";
 import { Product } from "../model/Product";
+import { User } from "../model/User";
 
 class ProductController {
 
@@ -53,12 +54,37 @@ class ProductController {
             })
     }
 
-    async delivery(dataOrder: Order) {
-        return axios.post('http://localhost:5000/checkout/delivery', { dataOrder })
+    async delivery(dataOrder: User, idOrder: string) {
+        return axios.post('http://localhost:5000/checkout/delivery', { dataOrder, idOrder })
     }
 
     async listOrder() {
         return axios.get('http://localhost:5000/orders')
+            .then(res => {
+                return res.data;
+            })
+    }
+
+    async orderProduct(id: string, quantity: number, price: number) {
+        return axios.post(`http://localhost:5000/carts/${id}`, {quantity, price})           
+    }
+
+    async getListCart() {
+        return axios.get(`http://localhost:5000/checkout/cart`)
+            .then(res => {
+                return res.data;
+            })
+    }
+
+    async setReductionQuantity(idCart: string) {
+        return axios.get(`http://localhost:5000/cart/reduction/${idCart}`)
+            .then(res => {
+                return res.data;
+            })
+    }
+
+    async setIncreaseQuantity(idCart: string) {
+        return axios.get(`http://localhost:5000/cart/increase/${idCart}`)
             .then(res => {
                 return res.data;
             })

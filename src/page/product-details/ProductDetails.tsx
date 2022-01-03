@@ -9,7 +9,7 @@ import { getDataLocal, setDataLocal } from '../../model/DataLocal';
 export default function ProductDetails() {
 
     const [value, setValue] = useState<Product>();
-    const [quantilyProduct, setQuantily] = useState<number>(1);
+    const [quantityProduct, setQuantity] = useState<number>(1);
 
     const { idProduct } = useParams();
     useEffect(() => {
@@ -18,29 +18,8 @@ export default function ProductDetails() {
         })
     }, [])
 
-    const onAddCart = () => {
-        getDataLocal();
-        let cartProduct: Cart[] = getDataLocal();
-        let checkproduct: boolean = true;
-        for (let i = 0; i < cartProduct.length; i++) {
-            if (cartProduct[i].id == value?.id) {
-                cartProduct[i].quantily += quantilyProduct;
-                checkproduct = false;
-            }
-        }
-        let itemCart: Cart;
-        if (checkproduct == true) {
-            itemCart = {
-                id: String(value?.id),
-                image: String(value?.image),
-                name: String(value?.name),
-                brance: String(value?.brance),
-                price: Number(value?.price),
-                quantily: Number(quantilyProduct),                
-            }
-            cartProduct.push(itemCart)
-        }        
-        setDataLocal(cartProduct);
+    const onAddCart = () => {       
+        productController.orderProduct(String(idProduct), quantityProduct, Number(value?.price))
     }
     
     return (
@@ -56,7 +35,7 @@ export default function ProductDetails() {
                     <h3 className='name-brance'><b>{value?.brance}</b></h3>
                     <h1>{value?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} <u>đ</u> </h1>
                     <div className="concat">
-                        <input type="number" name="soluong" id="soluong" min="1" placeholder="SL" onChange={(e) => setQuantily(Number(e.target.value))} />
+                        <input type="number" name="soluong" id="soluong" min="1" placeholder="SL" onChange={(e) => setQuantity(Number(e.target.value))} />
                         <button onClick={onAddCart}><b>THÊM VÀO GIỎ</b> </button>
                     </div>
                     <div className="tinh"><div className="ship">

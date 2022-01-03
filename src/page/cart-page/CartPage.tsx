@@ -1,55 +1,53 @@
-import React, { useState } from 'react'
-import { Link, useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { productController } from '../../controller/ProductController';
 import { Cart } from '../../model/Cart';
-import { getDataLocal, setDataLocal } from '../../model/DataLocal';
 import './CartPage.css'
 import CartProduct from './CartProduct';
+import { useNavigate } from "react-router-dom";
 
 export default function CartPage() {
 
-    const [value, setValue] = useState<Cart[]>(getDataLocal);
+    const [value, setValue] = useState<Cart[]>([]);
+    const navigate = useNavigate();
 
-    const onReduction = (id: string) => {
-        for (let i = 0; i < value.length; i++) {
-            if (value[i].id == id) {
-                value[i].quantily -= 1;
-                setValue(value.slice());
-                setDataLocal(value);
-            }
-            if (value[i].quantily <= 1) {
-                value[i].quantily = 1;
-                setValue(value.slice());
-                setDataLocal(value);
-            }
-        }
+    useEffect(() => {
+        productController.getListCart().then(res => {
+            setValue(res);
+        })
+    }, [])
+
+    const onReduction = (id: string) => {      
+        productController.setReductionQuantity(id).then(res => {
+            setValue(res);
+        })
     }
 
     const onIncrease = (id: string) => {
-        for (let i = 0; i < value.length; i++) {
-            if (value[i].id == id) {
-                value[i].quantily += 1;
-                setValue(value.slice())
-            }
-        }
-        setDataLocal(value);
+        productController.setIncreaseQuantity(id).then(res => {
+            setValue(res);
+        })
     }
 
     let totalProductMoney: number = 0;
     for (let i = 0; i < value.length; i++) {
-        totalProductMoney += value[i].quantily * value[i].price;
+        totalProductMoney += value[i].quantity * value[i].price;
     }
 
     const onRemove = (id: string) => {
-        let filterCart = value.filter(item => (
-            item.id != id
-        ))
-        setDataLocal(filterCart);
-        setValue(filterCart);
+        // let filterCart = value.filter(item => (
+        //     item.id != id
+        // ))
+        // // setDataLocal(filterCart);
+        // setValue(filterCart);
     }
 
-    console.log(value);
-    
+    const onDelivery = () => {
+        navigate(`/checkout/delivery/${value[0].order_id}`);
+    }
 
+    console.log(value);    
+    
     return (
         value.length != 0 ? 
         <div className="cart-container">
@@ -71,7 +69,7 @@ export default function CartPage() {
                             <div className="item-danh-sach">
                                 <span>Thao tác</span>
                             </div>
-                        </div>                        
+                        </div>
                         <div id="carts" className="danh-sach-san-pham-mua">                            
                             {value.map((item, index) => <CartProduct key={index} cart={item} onReduction={onReduction} onIncrease={onIncrease} onRemove={onRemove} />)}
                         </div>
@@ -88,9 +86,9 @@ export default function CartPage() {
                         <span>{totalProductMoney.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} đ</span>
                     </div>
                 </div>
-                <Link to="/checkout/delivery" className="btn-order">
+                <div onClick={onDelivery} className="btn-order">
                     <button>Đặt hàng</button>
-                </Link>
+                </div>
             </div>
         </div>
         :
