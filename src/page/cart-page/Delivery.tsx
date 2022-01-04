@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { productController } from '../../controller/ProductController';
-import { getDataLocal } from '../../model/DataLocal';
 import { User } from '../../model/User';
 import './Delivery.css';
+const { v4: uuidv4 } = require('uuid');
 
 export default function Delivery() {    
     const [dataUser, setDataUser] = useState<User>({
+        id: "",
         fullName: "",
         phoneNumber: 0,
         email: "",
@@ -19,6 +20,7 @@ export default function Delivery() {
     const Purchase = () => {
         let userInformation: User;
         userInformation = {
+            id: uuidv4(),
             fullName: dataUser.fullName,
             phoneNumber: dataUser.phoneNumber,
             email: dataUser.email,

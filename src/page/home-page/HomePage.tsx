@@ -63,8 +63,7 @@ export default function HomePage() {
         if (indexPage < pageCount.length) {
             onPageNumber(indexPage + 1);
             setIndexPage(indexPage + 1);
-        }
-        
+        }        
     }
 
     const prePage = () => {        
@@ -72,7 +71,7 @@ export default function HomePage() {
             onPageNumber(indexPage - 1);
             setIndexPage(indexPage - 1);            
         }       
-    }  
+    }
 
     return (
         <div>

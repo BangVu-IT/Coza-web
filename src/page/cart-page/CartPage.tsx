@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { productController } from '../../controller/ProductController';
-import { Cart } from '../../model/Cart';
 import './CartPage.css'
 import CartProduct from './CartProduct';
 import { useNavigate } from "react-router-dom";
+import { Cart } from '../../model/Cart';
 
 export default function CartPage() {
 
@@ -17,7 +17,7 @@ export default function CartPage() {
         })
     }, [])
 
-    const onReduction = (id: string) => {      
+    const onReduction = (id: string) => {
         productController.setReductionQuantity(id).then(res => {
             setValue(res);
         })
@@ -35,19 +35,17 @@ export default function CartPage() {
     }
 
     const onRemove = (id: string) => {
-        // let filterCart = value.filter(item => (
-        //     item.id != id
-        // ))
-        // // setDataLocal(filterCart);
-        // setValue(filterCart);
+        productController.deleteCartProduct(id).then(res => {
+            setValue(res);
+        })
     }
 
     const onDelivery = () => {
         navigate(`/checkout/delivery/${value[0].order_id}`);
     }
 
-    console.log(value);    
-    
+    console.log(value);
+            
     return (
         value.length != 0 ? 
         <div className="cart-container">

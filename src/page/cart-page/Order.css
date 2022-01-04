@@ -19,9 +19,17 @@ ul{
 
 .order-container {
     background-color: #ddd;
-    min-height: 400px;
+    min-height: 450px;
     padding-bottom: 20px;
     padding-top: 30px;
+}
+
+.title-history {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    margin-left: 15%;
+    font-size: 20px;
+    color: #c58a5f;
 }
 
 .item-list-product {    
@@ -161,4 +169,9 @@ ul{
 .btn-keep-buying-orders button:hover {
     cursor: pointer;
     background-color: #997157;    
+}
+
+.page-number-order {
+    margin-top: 50px;
+    margin-bottom: 30px;
 }

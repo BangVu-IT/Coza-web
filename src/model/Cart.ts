@@ -3,7 +3,7 @@ export interface Cart {
     order_id: string;
     image: string;
     name: string;
-    brance: string;
+    brand: string;
     price: number;
     quantity: number;
 }

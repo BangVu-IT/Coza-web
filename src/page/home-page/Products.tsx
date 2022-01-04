@@ -17,7 +17,7 @@ export default function Products(props:Props) {
                     {props.product.name}
                 </div>
                 <div className="hang-san-pham">
-                    {props.product.brance}
+                    {props.product.brand}
                 </div>
                 <div className="gia-san-pham">
                     {props.product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} <span><u>đ</u></span>

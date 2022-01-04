@@ -3,8 +3,6 @@ import '../product-details/ProductDetails.css';
 import { useParams } from 'react-router-dom';
 import { productController } from '../../controller/ProductController';
 import { Product } from '../../model/Product';
-import { Cart } from '../../model/Cart';
-import { getDataLocal, setDataLocal } from '../../model/DataLocal';
 
 export default function ProductDetails() {
 
@@ -32,7 +30,7 @@ export default function ProductDetails() {
                 </div>
                 <div className="khoiphai">
                     <h2><b>{value?.name}</b></h2>
-                    <h3 className='name-brance'><b>{value?.brance}</b></h3>
+                    <h3 className='name-brance'><b>{value?.brand}</b></h3>
                     <h1>{value?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} <u>đ</u> </h1>
                     <div className="concat">
                         <input type="number" name="soluong" id="soluong" min="1" placeholder="SL" onChange={(e) => setQuantity(Number(e.target.value))} />

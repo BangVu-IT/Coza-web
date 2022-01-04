@@ -13,7 +13,7 @@ export default function WareHouse() {
         id: '',
         image: '',
         name: '',
-        brance: '',
+        brand: '',
         price: 0,
     });
 
@@ -35,13 +35,13 @@ export default function WareHouse() {
         if (data.id != '') {                        
             productController.update(product).then(res => {
                 setValue(res);
-            });            
+            });
         } else {            
             productController.add(product).then(res => {
                 setValue(res);
             });                       
         }        
-        setData({ id: '', image: '', name: '', brance: '', price: 0 })
+        setData({ id: '', image: '', name: '', brand: '', price: 0 })
     }
 
     const onUpdate = (product: Product) => {

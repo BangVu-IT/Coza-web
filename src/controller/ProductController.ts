@@ -1,5 +1,4 @@
 import axios from "axios";
-import { Order } from "../model/Order";
 import { Product } from "../model/Product";
 import { User } from "../model/User";
 
@@ -58,8 +57,8 @@ class ProductController {
         return axios.post('http://localhost:5000/checkout/delivery', { dataOrder, idOrder })
     }
 
-    async listOrder() {
-        return axios.get('http://localhost:5000/orders')
+    async listOrder(page: number, pagesize: number) {
+        return axios.post('http://localhost:5000/orders', { page, pagesize })
             .then(res => {
                 return res.data;
             })
@@ -85,6 +84,13 @@ class ProductController {
 
     async setIncreaseQuantity(idCart: string) {
         return axios.get(`http://localhost:5000/cart/increase/${idCart}`)
+            .then(res => {
+                return res.data;
+            })
+    }
+
+    async deleteCartProduct(id: string) {
+        return axios.delete(`http://localhost:5000/cart/item/${id}`)
             .then(res => {
                 return res.data;
             })

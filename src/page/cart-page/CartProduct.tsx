@@ -1,9 +1,8 @@
 import React from 'react'
 import { Cart } from '../../model/Cart';
-import { Product } from '../../model/Product';
 
 interface Props {
-    cart: Cart;    
+    cart: Cart;
     onReduction: (id: string) => void;
     onIncrease: (id: string) => void;
     onRemove: (id: string) => void;
