@@ -6,7 +6,20 @@ export default function Header() {
     return (
         <div>
             <div>
-                <nav className="nav-bar" id="nav-bar">                   
+                <nav className="nav-bar" id="nav-bar">
+                    <div className="tai-khoan">
+                        <div className="dang-nhap" id="dangnhap">
+                            <Link to="/users/login">Đăng nhập</Link>
+                        </div>
+                        <div className="border-trai-dang-ki">
+                        </div>
+                        <div className="dang-ki">
+                            <Link to="#">Đăng kí</Link>
+                        </div>
+                    </div>
+                    <div className="mid" />
+                    {/* Menu mid */}
+                    <div className="top" />
                     <div className="menu-top">
                         <div className="icon-menu-hien-thi">
                             <i className="fas fa-bars fa-2x" />
@@ -60,7 +73,7 @@ export default function Header() {
                         <button className="dong-menu-on-mobie"><i id="icon-dong-menu" className="fas fa-times" />Đóng</button>
                     </ul>
                 </div>
-            </div>            
+            </div>
         </div>
     )
 }

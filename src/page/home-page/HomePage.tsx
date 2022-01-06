@@ -9,9 +9,9 @@ import { useNavigate } from "react-router-dom";
 export default function HomePage() {
     const [value, setValue] = useState<Product[]>([]);
     const [pageCount, setpageCount] = useState<[]>([]);
-    const [indexPage, setIndexPage] = useState<number>(1);
-    const [pageSize, setPageSize] = useState<number>(4);
+    const [indexPage, setIndexPage] = useState<number>(1);    
     const [inputSearch, setInputSearch] = useState<string>();
+    const pageSize = 4;
     const navigate = useNavigate();
 
     useEffect(() => {

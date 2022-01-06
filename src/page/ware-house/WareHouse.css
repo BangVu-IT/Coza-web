@@ -181,9 +181,7 @@ ul{
     height: 800px;
     float: right;
     width: 70%;
-    border-left: 1px solid #333333;
-    overflow-y:scroll;
-    overflow-x:hidden;    
+    border-left: 1px solid #333333;      
 }
 
 .tim-kiem-sp{
@@ -433,6 +431,10 @@ ul{
 .container-left .form-them-sp .price-error {
     color: red;
     font-weight: 350;  
+}
+
+.page-number-warehouse {
+    margin-top: 40px;
 }
 
 

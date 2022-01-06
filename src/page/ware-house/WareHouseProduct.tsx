@@ -5,8 +5,15 @@ import { Product } from '../../model/Product';
 interface Props {
     product: Product[];
     onRemove: (id: string) => void;
-    onUpdate: (product: Product) => void;
-    onSearch: (inputValue: string) => void;
+    onUpdate: (product: Product) => void;    
+    onPageNumber: (page: number) => void;
+    countPage: ([]);
+    nextPage: () => void;
+    prePage: () => void;
+    onSearch: (keyWord: string) => void;
+    pageLimit: string;
+    pageLimitTop: string;
+    pageIndex: number;
 };
 
 export default function WareHouseProduct(props: Props) {    
@@ -27,6 +34,14 @@ export default function WareHouseProduct(props: Props) {
                 {
                     props.product.map((item, index) => <ProductList key={index} product={item} onRemove={() => props.onRemove(item.id)} onUpdate={() => props.onUpdate(item)} />)
                 }
+            </div>
+
+            <div className="pageNumber page-number-warehouse">
+                <i onClick={props.prePage} className= {props.pageLimit + " fas fa-chevron-left"}></i>
+                <div className="page-number">
+                    {props.countPage.map((item, index) => <button className={props.pageIndex == index + 1 ? "btn-page-number" : ""} onClick={() => props.onPageNumber(item)}>{item}</button>)}
+                </div>
+                <i onClick={props.nextPage} className={props.pageLimitTop + " fas fa-chevron-right"}></i>
             </div>
         </div>
     )

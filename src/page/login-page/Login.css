@@ -1,0 +1,66 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.main-container{
+    margin: 80px 0px;
+}
+
+.container-dang-nhap{
+    max-width: 400px;    
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    background-color: white;
+}
+
+.container-dang-nhap .input-dang-nhap{
+    margin-top:10px;
+    outline: none;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    padding: 10px 10px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.form-el {
+    margin-top: 20px;
+}
+
+.btn-bt{
+    margin-top: 20px;
+    text-align: center;
+}
+
+.btn-dang-nhap{
+    width: 100%;
+    padding: 10px;
+    color: white;
+    background-color:#C69878 ;
+    outline: none;    
+    border: 0;
+    border-radius: 3px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}  
+
+.btn-dang-nhap:hover{
+    background-color:#997157 ;
+    cursor: pointer;
+    transition-duration: 0.3s;
+}
+
+.title-content-login{
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;    
+}
+
+.logo-login{
+    text-align: center;
+    font-size: 60px;
+}

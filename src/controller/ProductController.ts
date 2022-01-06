@@ -1,15 +1,9 @@
 import axios from "axios";
+import { setToken } from ".";
 import { Product } from "../model/Product";
 import { User } from "../model/User";
 
-class ProductController {
-
-    async listCart() {
-        return axios.get('http://localhost:5000/')
-            .then(res => {
-                return res.data;
-            })
-    }
+class ProductController {    
 
     async listHome(page: number, search: string, pagesize: number) {
         return axios.post('http://localhost:5000/products/', { page, search, pagesize })
@@ -58,14 +52,14 @@ class ProductController {
     }
 
     async listOrder(page: number, pagesize: number) {
-        return axios.post('http://localhost:5000/orders', { page, pagesize })
+        return setToken.post('/orders', { page, pagesize })
             .then(res => {
                 return res.data;
             })
     }
 
     async orderProduct(id: string, quantity: number, price: number) {
-        return axios.post(`http://localhost:5000/carts/${id}`, {quantity, price})           
+        return axios.post(`http://localhost:5000/carts/${id}`, { quantity, price })
     }
 
     async getListCart() {
@@ -93,6 +87,13 @@ class ProductController {
         return axios.delete(`http://localhost:5000/cart/item/${id}`)
             .then(res => {
                 return res.data;
+            })
+    }
+
+    async login(user: object) {
+        return axios.post(`http://localhost:5000/users/login`, user)
+            .then(res => {
+                return res;
             })
     }
 

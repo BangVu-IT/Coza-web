@@ -16,14 +16,65 @@ export default function WareHouse() {
         brand: '',
         price: 0,
     });
+    const [pageCount, setpageCount] = useState<[]>([]);
+    const [indexPage, setIndexPage] = useState<number>(1);
+    const [pageSize, setPageSize] = useState<number>(3);
+    const [inputSearch, setInputSearch] = useState<string>();
 
     useEffect(() => {
-        productController.listCart().then(res => {
-            setValue(res);
-            console.log(value);
-            
+        productController.listHome(1, "", pageSize).then(res => {
+            setValue(res.arrProduct);
+            setpageCount(res.arrPageNumber);
         })
     }, [])
+
+    const onPageNumber = (page: number) => {
+        if (inputSearch != undefined) {
+            productController.listHome(page, String(inputSearch), pageSize).then(res => {
+                setValue(res.arrProduct);
+                setpageCount(res.arrPageNumber);
+                setIndexPage(page);
+            })
+        }else {
+            productController.listHome(page, "", pageSize).then(res => {
+                setValue(res.arrProduct);
+                setpageCount(res.arrPageNumber);
+                setIndexPage(page);
+            })
+        }
+    }
+
+    const onSearch = (keyWord: string) => {
+        if (keyWord != "") {
+            productController.listHome(1, keyWord, pageSize).then(res => {
+                setValue(res.arrProduct);
+                setpageCount(res.arrPageNumber);
+                setIndexPage(1);
+                setInputSearch(keyWord);
+            })
+        } else {
+            productController.listHome(1, "", pageSize).then(res => {
+                setValue(res.arrProduct);
+                setpageCount(res.arrPageNumber);
+                setIndexPage(1);
+                setInputSearch(keyWord);
+            })
+        }
+    }
+
+    const nextPage = () => {          
+        if (indexPage < pageCount.length) {
+            onPageNumber(indexPage + 1);
+            setIndexPage(indexPage + 1);
+        }        
+    }
+
+    const prePage = () => {        
+        if (indexPage > 1) {
+            onPageNumber(indexPage - 1);
+            setIndexPage(indexPage - 1);            
+        }       
+    }
 
     const onRemove = async (id: string) => {
         productController.delete(id).then(res => {
@@ -46,18 +97,12 @@ export default function WareHouse() {
 
     const onUpdate = (product: Product) => {
         setData({ ...product });
-    }
-
-    const onSearch = (inputValue: string) => {
-        productController.search(inputValue).then(res => {
-            setValue(res);
-        })
-    }
+    }   
 
     return (
         <div className="container-chung">
-            <FormInput key={uuidv4()} onAdd={onAdd} product={data} />
-            <WareHouseProduct key={uuidv4} product={value} onRemove={onRemove} onUpdate={onUpdate} onSearch={onSearch} />)
+            <FormInput onAdd={onAdd} product={data} />
+            <WareHouseProduct key={uuidv4} product={value} onRemove={onRemove} onUpdate={onUpdate} onPageNumber={onPageNumber} countPage={pageCount} nextPage={nextPage} prePage={prePage} onSearch={onSearch} pageLimit={indexPage == 1 ? "page-limit" : ""} pageLimitTop={indexPage == pageCount.length ? "page-limit-top" : ""} pageIndex={indexPage} />            
         </div>
     )
 }

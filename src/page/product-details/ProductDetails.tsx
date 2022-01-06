@@ -17,7 +17,7 @@ export default function ProductDetails() {
     }, [])
 
     const onAddCart = () => {       
-        productController.orderProduct(String(idProduct), quantityProduct, Number(value?.price))
+        productController.orderProduct(String(idProduct), quantityProduct, Number(value?.price))        
     }
     
     return (
@@ -35,6 +35,7 @@ export default function ProductDetails() {
                     <div className="concat">
                         <input type="number" name="soluong" id="soluong" min="1" placeholder="SL" onChange={(e) => setQuantity(Number(e.target.value))} />
                         <button onClick={onAddCart}><b>THÊM VÀO GIỎ</b> </button>
+                        {/* <Alert severity="success">This is a success alert — check it out!</Alert> */}
                     </div>
                     <div className="tinh"><div className="ship">
                         <p><b>Tính phí ship tự động</b> </p>
@@ -59,7 +60,8 @@ export default function ProductDetails() {
                         <button><b>Đăng ký Affilicate</b> </button>
                         <div className="masp">
                             <p>Mã: M5039V-1</p>
-                            <p>Danh mục: Đồng hồ, Nam</p></div>
+                            <p>Danh mục: Đồng hồ, Nam</p>
+                        </div>
                     </div>
                 </div>
             </section>
