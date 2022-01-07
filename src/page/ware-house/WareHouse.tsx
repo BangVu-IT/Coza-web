@@ -17,8 +17,8 @@ export default function WareHouse() {
         price: 0,
     });
     const [pageCount, setpageCount] = useState<[]>([]);
-    const [indexPage, setIndexPage] = useState<number>(1);
-    const [pageSize, setPageSize] = useState<number>(3);
+    const [indexPage, setIndexPage] = useState<number>(1);    
+    const pageSize = 3;
     const [inputSearch, setInputSearch] = useState<string>();
 
     useEffect(() => {
@@ -77,32 +77,38 @@ export default function WareHouse() {
     }
 
     const onRemove = async (id: string) => {
-        productController.delete(id).then(res => {
-            setValue(res);
-        });
+        productController.delete(id)
+        productController.listHome(1, "", pageSize).then(res => {
+            setValue(res.arrProduct);
+            setpageCount(res.arrPageNumber);
+            setIndexPage(1);
+        })
     }
 
-    const onAdd = (product: Product) => {
-        if (data.id != '') {                        
-            productController.update(product).then(res => {
-                setValue(res);
+    const onAdd = (product: Product) => {        
+        if (data.id != '') {            
+            productController.update(product, 1, "", pageSize).then(res => {
+                setValue(res.arrProduct);
+                setIndexPage(1);
             });
-        } else {            
-            productController.add(product).then(res => {
-                setValue(res);
-            });                       
-        }        
+        } else {
+            productController.add(product, 1, "", pageSize).then(res => {
+                setValue(res.arrProduct);
+                setpageCount(res.arrPageNumber);
+                setIndexPage(1);
+            });
+        }
         setData({ id: '', image: '', name: '', brand: '', price: 0 })
     }
 
     const onUpdate = (product: Product) => {
         setData({ ...product });
-    }   
+    }
 
     return (
         <div className="container-chung">
-            <FormInput onAdd={onAdd} product={data} />
-            <WareHouseProduct key={uuidv4} product={value} onRemove={onRemove} onUpdate={onUpdate} onPageNumber={onPageNumber} countPage={pageCount} nextPage={nextPage} prePage={prePage} onSearch={onSearch} pageLimit={indexPage == 1 ? "page-limit" : ""} pageLimitTop={indexPage == pageCount.length ? "page-limit-top" : ""} pageIndex={indexPage} />            
+            <FormInput key={Math.random()} onAdd={onAdd} product={data} />
+            <WareHouseProduct key={uuidv4} product={value} onRemove={onRemove} onUpdate={onUpdate} onPageNumber={onPageNumber} countPage={pageCount} nextPage={nextPage} prePage={prePage} onSearch={onSearch} pageLimit={indexPage == 1 ? "page-limit" : ""} pageLimitTop={indexPage == pageCount.length ? "page-limit-top" : ""} pageIndex={indexPage} />
         </div>
     )
 }

@@ -1,13 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../Header/Header.css';
 
-export default function Header() {
+interface Props {
+    name: string;
+}
+
+export default function Header(props: Props) {    
     return (
         <div>
             <div>
                 <nav className="nav-bar" id="nav-bar">
                     <div className="tai-khoan">
+                        <div className="user-name">
+                            <p>{props.name}</p>
+                        </div>
                         <div className="dang-nhap" id="dangnhap">
                             <Link to="/users/login">Đăng nhập</Link>
                         </div>

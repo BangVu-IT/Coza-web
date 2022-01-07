@@ -9,11 +9,22 @@ import ProductDetails from './page/product-details/ProductDetails';
 import Delivery from './page/cart-page/Delivery';
 import OrderProduct from './page/cart-page/OrderProduct';
 import Login from './page/login-page/Login';
+import { useEffect } from 'react';
+import { productController } from './controller/ProductController';
+import { useState } from 'react';
 
 export default function App() {
+  const [name, setName] = useState("");
+
+  useEffect(() => {
+    productController.getMe().then(res => {
+      setName(res.data.userName);      
+    })
+  }, [])  
+
   return (
     <BrowserRouter>
-      <Header />
+      <Header name={name} />
 
       <Routes>
         <Route path="/" element={<HomePage />} />

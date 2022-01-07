@@ -13,9 +13,9 @@ export default function FormInput(props: Props) {
         image: props.product.image,
         name: props.product.name,
         brand: props.product.brand,
-        price: props.product.price,
-    });
-    
+        price: props.product.price
+    });    
+        
     const [checkValidate, setValidate] = useState<boolean>(true);
     const [checkValidate2, setValidate2] = useState<boolean>(true);
     const [checkValidate3, setValidate3] = useState<boolean>(true);
@@ -68,19 +68,19 @@ export default function FormInput(props: Props) {
                 <h2 className="title-them-sp">Thêm sản phẩm</h2>
 
                 <label htmlFor="anh-sp">Link ảnh: </label>
-                <input type="text" name="image" id="anh-sp" onChange={e => {setNewProduct({...newProduct, image: e.target.value})}} onInput={onInput} onBlur={() => validate("image")} value={newProduct.image} />
+                <input type="text" name="image" id="anh-sp" onChange={e => setNewProduct({...newProduct, image: e.target.value})} onInput={onInput} onBlur={() => validate("image")} value={newProduct.image} />
                 <label className='image-error' htmlFor="">{imageError}</label>
 
                 <label htmlFor="ten-sp">Tên sản phẩm: </label>
-                <input type="text" name="name" id="ten-sp" onChange={e => {setNewProduct({...newProduct, name: e.target.value})}} onInput={onInput2} onBlur={() => validate("name")} value={newProduct.name} />
+                <input type="text" name="name" id="ten-sp" onChange={e => setNewProduct({...newProduct, name: e.target.value})} onInput={onInput2} onBlur={() => validate("name")} value={newProduct.name} />
                 <label className='name-error' htmlFor="">{nameError}</label>
 
                 <label htmlFor="hang-sp">Hãng sản phẩm: </label>
-                <input type="text" name="brance" id="hang-sp" onChange={e => {setNewProduct({...newProduct, brand: e.target.value})}} onInput={onInput3} onBlur={() => validate("brance")} value={newProduct.brand} />
+                <input type="text" name="brance" id="hang-sp" onChange={e => setNewProduct({...newProduct, brand: e.target.value})} onInput={onInput3} onBlur={() => validate("brance")} value={newProduct.brand} />
                 <label className='brance-error' htmlFor="">{brandError}</label>
 
                 <label htmlFor="gia-sp">Giá sản phẩm: </label>
-                <input type="number" name="price" id="gia-sp" onChange={e => {setNewProduct({...newProduct, price: Number(e.target.value)})}} onInput={onInput4} onBlur={() => validate("price")} value={newProduct.price} />
+                <input type="number" name="price" id="gia-sp" onChange={e => setNewProduct({...newProduct, price: Number(e.target.value)})} onInput={onInput4} onBlur={() => validate("price")} value={newProduct.price} />
                 <label className='price-error' htmlFor="">{priceError}</label>
 
                 <button id="btnthem" onClick={subMidFormValidate}>Thêm Sản Phẩm</button>

@@ -2,7 +2,7 @@ import axios from "axios";
 import { error } from "console";
 
 const setToken = axios.create({
-    baseURL: 'http://localhost:5000',    
+    baseURL: 'http://localhost:5000',
     timeout: 30000
 })
 

@@ -5,7 +5,7 @@ import { Product } from '../../model/Product';
 interface Props {
     product: Product[];
     onRemove: (id: string) => void;
-    onUpdate: (product: Product) => void;    
+    onUpdate: (product: Product) => void;
     onPageNumber: (page: number) => void;
     countPage: ([]);
     nextPage: () => void;
@@ -16,7 +16,7 @@ interface Props {
     pageIndex: number;
 };
 
-export default function WareHouseProduct(props: Props) {    
+export default function WareHouseProduct(props: Props) {
     return (
         <div className="container-right">
             <div className="border-space">                

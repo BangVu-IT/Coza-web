@@ -15,11 +15,7 @@ export default function Login() {
         productController.login(dataUser).then(res => {
             localStorage.setItem("Authorization", res.data)
             setToken.defaults.headers.common['Authorization'] = res.data;
-            if (res.status != 200) {
-                navigate(`/users/login`);
-            } else {
-                navigate(`/`);
-            }
+            window.location.href = '/';
         })
     }
 

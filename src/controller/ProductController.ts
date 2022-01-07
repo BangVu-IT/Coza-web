@@ -12,22 +12,19 @@ class ProductController {
             })
     }
 
-    async delete(id: string) {
-        return axios.delete(`http://localhost:5000/delete/${id}`)
+    async delete(id: String) {
+        return axios.delete(`http://localhost:5000/delete/${id}`)           
+    }
+
+    async add(product: Product, page: number, search: string, pagesize: number) {
+        return axios.post('http://localhost:5000/add/', { product, page, search, pagesize })
             .then(res => {
                 return res.data;
             })
     }
 
-    async add(product: Product) {
-        return axios.post('http://localhost:5000/add/', product)
-            .then(res => {
-                return res.data;
-            })
-    }
-
-    async update(product: Product) {
-        return axios.put(`http://localhost:5000/update/${product.id}`, product)
+    async update(product: Product, page: number, search: string, pagesize: number) {
+        return axios.put(`http://localhost:5000/update/${product.id}`, { product, page, search, pagesize })
             .then(res => {
                 return res.data;
             })
@@ -92,6 +89,13 @@ class ProductController {
 
     async login(user: object) {
         return axios.post(`http://localhost:5000/users/login`, user)
+            .then(res => {
+                return res;
+            })
+    }
+
+    async getMe() {
+        return setToken.get(`/get-me`)
             .then(res => {
                 return res;
             })
