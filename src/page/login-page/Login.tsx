@@ -4,18 +4,18 @@ import { productController } from '../../controller/ProductController';
 import './Login.css';
 import { useNavigate } from "react-router-dom";
 
-export default function Login() {
+export default function Login() {    
     const [dataUser, setDataUser] = useState<object>({
         userName: "",
         passWord: ""
     })
     const navigate = useNavigate();
 
-    const onLogin = () => {
+    const onLogin = () => {        
         productController.login(dataUser).then(res => {
             localStorage.setItem("Authorization", res.data)
             setToken.defaults.headers.common['Authorization'] = res.data;
-            window.location.href = '/';
+            navigate(`/`);
         })
     }
 

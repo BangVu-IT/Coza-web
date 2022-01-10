@@ -1,19 +1,30 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { setToken } from '../../controller';
+import { productController } from '../../controller/ProductController';
+import { CartContext } from '../../store/CartProvider';
+import { Context } from '../../store/Provider';
 import '../Header/Header.css';
 
-interface Props {
-    name: string;
-}
+export default function Header() {
 
-export default function Header(props: Props) {    
+    const { userName, changeUsername } = useContext(Context);
+    const { productNumberCart, cartNumber } = useContext(CartContext);    
+
+    const logOut = () => {
+        localStorage.removeItem("Authorization");
+        setToken.defaults.headers.common['Authorization'] = "";
+        changeUsername("");
+        cartNumber(0);
+    }
+
     return (
         <div>
             <div>
                 <nav className="nav-bar" id="nav-bar">
                     <div className="tai-khoan">
                         <div className="user-name">
-                            <p>{props.name}</p>
+                            <p>{userName}</p>
                         </div>
                         <div className="dang-nhap" id="dangnhap">
                             <Link to="/users/login">Đăng nhập</Link>
@@ -21,7 +32,7 @@ export default function Header(props: Props) {
                         <div className="border-trai-dang-ki">
                         </div>
                         <div className="dang-ki">
-                            <Link to="#">Đăng kí</Link>
+                            <Link onClick={logOut} to="/users/login">Đăng xuất</Link>
                         </div>
                     </div>
                     <div className="mid" />
@@ -41,7 +52,7 @@ export default function Header(props: Props) {
                             <button className="btn"><i className="fas fa-search" /></button>
                         </div>
                         <div className="gio-hang">
-                            <Link to="/checkout/cart"><i className="icon-gio-hang fas fa-shopping-cart" /></Link>
+                            <Link to="/checkout/cart"><i className="icon-gio-hang fas fa-shopping-cart" /><span>{productNumberCart}</span></Link>
                         </div>
                         <div className="border-trai">
                         </div>

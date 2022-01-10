@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Product } from '../../model/Product';
 import './WareHouse.css';
 import FormInput from './FormInput';
 import WareHouseProduct from './WareHouseProduct';
 import { productController } from '../../controller/ProductController';
+import { Context } from '../../store/Provider';
+import { CartContext } from '../../store/CartProvider';
 
 const { v4: uuidv4 } = require('uuid');
 
@@ -20,6 +22,20 @@ export default function WareHouse() {
     const [indexPage, setIndexPage] = useState<number>(1);    
     const pageSize = 3;
     const [inputSearch, setInputSearch] = useState<string>();
+    const { changeUsername } = useContext(Context);
+    const { cartNumber } = useContext(CartContext);
+
+    useEffect(() => {
+        productController.getMe().then(res => {
+            changeUsername(res.data.userName)
+        })
+    }, [])
+
+    useEffect(() => {
+        productController.getListCart("1").then(res => {              
+            cartNumber(res.length)         
+        })
+    }, [])
 
     useEffect(() => {
         productController.listHome(1, "", pageSize).then(res => {
@@ -76,7 +92,7 @@ export default function WareHouse() {
         }       
     }
 
-    const onRemove = async (id: string) => {
+    const onRemove = (id: string) => {
         productController.delete(id)
         productController.listHome(1, "", pageSize).then(res => {
             setValue(res.arrProduct);

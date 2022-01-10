@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import ListOrder from './ListOrder';
 import './Order.css';
 import { productController } from '../../controller/ProductController';
 import { Link } from 'react-router-dom';
 import { OrderWithDetail } from '../../model/Order';
+import { Context } from '../../store/Provider';
+import { CartContext } from '../../store/CartProvider';
 
 export default function OrderProduct() {
 
@@ -11,6 +13,20 @@ export default function OrderProduct() {
     const [pageCount, setpageCount] = useState<[]>([]);
     const [indexPage, setIndexPage] = useState<number>(1);    
     const pageSize = 1;
+    const { changeUsername } = useContext(Context);
+    const { cartNumber } = useContext(CartContext);
+
+    useEffect(() => {
+        productController.getMe().then(res => {
+            changeUsername(res.data.userName)
+        })
+    }, [])
+
+    useEffect(() => {
+        productController.getListCart("1").then(res => {
+            cartNumber(res.length)            
+        })
+    }, [])
 
     useEffect(() => {
         productController.listOrder(1, pageSize).then(res => {

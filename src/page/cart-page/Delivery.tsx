@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { productController } from '../../controller/ProductController';
 import { User } from '../../model/User';
+import { CartContext } from '../../store/CartProvider';
+import { Context } from '../../store/Provider';
 import './Delivery.css';
 const { v4: uuidv4 } = require('uuid');
 
-export default function Delivery() {    
+export default function Delivery() {
     const [dataUser, setDataUser] = useState<User>({
         id: "",
         fullName: "",
@@ -13,9 +15,22 @@ export default function Delivery() {
         email: "",
         address: "",
         postcode: "",
-    });
-    
+    });    
     const { idOrder } = useParams();
+    const { changeUsername } = useContext(Context);
+    const { cartNumber } = useContext(CartContext);
+
+    useEffect(() => {
+        productController.getMe().then(res => {
+            changeUsername(res.data.userName)
+        })
+    }, [])
+
+    useEffect(() => {
+        productController.getListCart("1").then(res => {
+            cartNumber(res.length)            
+        })
+    }, [])
 
     const Purchase = () => {
         let userInformation: User;

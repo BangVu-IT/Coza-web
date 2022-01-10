@@ -9,34 +9,27 @@ import ProductDetails from './page/product-details/ProductDetails';
 import Delivery from './page/cart-page/Delivery';
 import OrderProduct from './page/cart-page/OrderProduct';
 import Login from './page/login-page/Login';
-import { useEffect } from 'react';
-import { productController } from './controller/ProductController';
-import { useState } from 'react';
+import { Provider } from './store/Provider';
+import { CartProvider } from './store/CartProvider';
 
-export default function App() {
-  const [name, setName] = useState("");
-
-  useEffect(() => {
-    productController.getMe().then(res => {
-      setName(res.data.userName);      
-    })
-  }, [])  
-
+export function App() {
   return (
     <BrowserRouter>
-      <Header name={name} />
-
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/admin" element={<WareHouse />} />
-        <Route path="/users/login" element={<Login />} />
-        <Route path="/product/:idProduct" element={<ProductDetails />} />
-        <Route path="/checkout/cart" element={<CartPage />} />
-        <Route path="/checkout/delivery/:idOrder" element={<Delivery />} />
-        <Route path="/user/orders" element={<OrderProduct />} />
-      </Routes>
-
-      <Footer />
+      <Provider>
+        <CartProvider>
+          <Header />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/admin" element={<WareHouse />} />
+            <Route path="/users/login" element={<Login />} />
+            <Route path="/product/:idProduct" element={<ProductDetails />} />
+            <Route path="/checkout/cart" element={<CartPage />} />
+            <Route path="/checkout/delivery/:idOrder" element={<Delivery />} />
+            <Route path="/user/orders" element={<OrderProduct />} />
+          </Routes>
+          <Footer />
+        </CartProvider>
+      </Provider>
     </BrowserRouter>
   );
 }

@@ -1,31 +1,46 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { productController } from '../../controller/ProductController';
 import './CartPage.css'
 import CartProduct from './CartProduct';
 import { useNavigate } from "react-router-dom";
 import { Cart } from '../../model/Cart';
+import { CartContext } from '../../store/CartProvider';
+import { Context } from '../../store/Provider';
 
 export default function CartPage() {
-
-    const [value, setValue] = useState<Cart[]>([]);
+    const [value, setValue] = useState<Cart[]>([]);    
     const navigate = useNavigate();
+    const { cartNumber } = useContext(CartContext);
+    const { changeUsername, userId, changeUserId } = useContext(Context);
 
     useEffect(() => {
-        productController.getListCart().then(res => {
-            setValue(res);
+        productController.getMe().then(res => {
+            changeUsername(res.data.userName)
+            changeUserId(res.data.user_id)
         })
-    }, [])
+    }, [])    
+
+    useEffect(() => {
+        productController.getListCart(userId).then(res => {
+            setValue(res);   
+            cartNumber(res.length)         
+        })
+    }, [userId])
 
     const onReduction = (id: string) => {
         productController.setReductionQuantity(id).then(res => {
-            setValue(res);
-        })
+            productController.getListCart(userId).then(res => {            
+                setValue(res);
+            })
+        })        
     }
 
     const onIncrease = (id: string) => {
         productController.setIncreaseQuantity(id).then(res => {
-            setValue(res);
+            productController.getListCart(userId).then(res => {            
+                setValue(res);
+            })
         })
     }
 
@@ -36,15 +51,16 @@ export default function CartPage() {
 
     const onRemove = (id: string) => {
         productController.deleteCartProduct(id).then(res => {
-            setValue(res);
+            productController.getListCart(userId).then(res => {
+                setValue(res);
+                cartNumber(res.length);
+            })
         })
     }
 
     const onDelivery = () => {
         navigate(`/checkout/delivery/${value[0].order_id}`);
     }
-
-    console.log(value);
             
     return (
         value.length != 0 ? 

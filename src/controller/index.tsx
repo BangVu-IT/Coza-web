@@ -6,16 +6,16 @@ const setToken = axios.create({
     timeout: 30000
 })
 
-const token = localStorage.getItem("Authorization") || "";
-setToken.defaults.headers.common['Authorization'] = token;
-
 setToken.interceptors.response.use(
     response => response,
-    error => {    
+    error => {
         if (error.response.status !== 200) {
             window.location.href = (`/users/login`);
         }
     }
 )
+
+const token = localStorage.getItem("Authorization") || "";
+setToken.defaults.headers.common['Authorization'] = token;
 
 export {setToken}

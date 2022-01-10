@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './HomePage.css';
 import Slide from './Slide';
 import ProductComponent from './ProductComponent';
 import { Product } from '../../model/Product';
 import { productController } from '../../controller/ProductController';
 import { useNavigate } from "react-router-dom";
+import { Context } from '../../store/Provider';
+import { CartContext } from '../../store/CartProvider';
 
 export default function HomePage() {
     const [value, setValue] = useState<Product[]>([]);
@@ -13,6 +15,22 @@ export default function HomePage() {
     const [inputSearch, setInputSearch] = useState<string>();
     const pageSize = 4;
     const navigate = useNavigate();
+
+    const { changeUsername, userId, changeUserId } = useContext(Context);
+    const { cartNumber } = useContext(CartContext);
+
+    useEffect(() => {
+        productController.getMe().then(res => {
+            changeUsername(res.data.userName);
+            changeUserId(res.data.user_id)
+        })
+    }, [])
+
+    useEffect(() => {
+        productController.getListCart(userId).then(res => {            
+            cartNumber(res.length)            
+        })
+    }, [userId])
 
     useEffect(() => {
         productController.listHome(1, "", pageSize).then(res => {
@@ -63,19 +81,19 @@ export default function HomePage() {
         if (indexPage < pageCount.length) {
             onPageNumber(indexPage + 1);
             setIndexPage(indexPage + 1);
-        }        
+        }
     }
 
-    const prePage = () => {        
+    const prePage = () => {
         if (indexPage > 1) {
             onPageNumber(indexPage - 1);
             setIndexPage(indexPage - 1);            
-        }       
+        }
     }
 
     return (
         <div>
-            <Slide />
+            <Slide />            
             <ProductComponent product={value} onProductDetails={onproductDetails} onPageNumber={onPageNumber} countPage={pageCount} nextPage={nextPage} prePage={prePage} onSearch={onSearch} pageLimit={indexPage == 1 ? "page-limit" : ""} pageLimitTop={indexPage == pageCount.length ? "page-limit-top" : ""} pageIndex={indexPage} />
         </div>
     )

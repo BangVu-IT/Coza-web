@@ -1,23 +1,43 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import '../product-details/ProductDetails.css';
 import { useParams } from 'react-router-dom';
 import { productController } from '../../controller/ProductController';
 import { Product } from '../../model/Product';
+import { CartContext } from '../../store/CartProvider';
+import { Context } from '../../store/Provider';
 
 export default function ProductDetails() {
 
     const [value, setValue] = useState<Product>();
     const [quantityProduct, setQuantity] = useState<number>(1);
-
     const { idProduct } = useParams();
+    const { cartNumber } = useContext(CartContext);
+    const { changeUsername, userId, changeUserId } = useContext(Context);    
+    
+    useEffect(() => {
+        productController.getMe().then(res => {
+            changeUsername(res.data.userName)
+            changeUserId(res.data.user_id)
+        })
+    }, [])
+
     useEffect(() => {
         productController.productDetails(String(idProduct)).then(res => {
             setValue(res);
         })
     }, [])
 
-    const onAddCart = () => {       
-        productController.orderProduct(String(idProduct), quantityProduct, Number(value?.price))        
+    useEffect(() => {
+        productController.getListCart(userId).then(res => {
+            cartNumber(res.length)
+        })
+    }, [userId])
+
+    const onAddCart = async () => {
+        await productController.orderProduct(String(idProduct), quantityProduct, Number(value?.price))
+        productController.getListCart(userId).then(res => {
+            cartNumber(res.length)
+        })
     }
     
     return (
@@ -34,8 +54,7 @@ export default function ProductDetails() {
                     <h1>{value?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} <u>đ</u> </h1>
                     <div className="concat">
                         <input type="number" name="soluong" id="soluong" min="1" placeholder="SL" onChange={(e) => setQuantity(Number(e.target.value))} />
-                        <button onClick={onAddCart}><b>THÊM VÀO GIỎ</b> </button>
-                        {/* <Alert severity="success">This is a success alert — check it out!</Alert> */}
+                        <button onClick={onAddCart}><b>THÊM VÀO GIỎ</b> </button>                     
                     </div>
                     <div className="tinh"><div className="ship">
                         <p><b>Tính phí ship tự động</b> </p>
