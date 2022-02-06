@@ -1,101 +1,85 @@
 import axios from "axios";
 import { setToken } from ".";
-import { Product } from "../model/Product";
-import { User } from "../model/User";
+import { Product, ProductWithDetail } from "../model/Product";
 
 class ProductController {    
 
-    async listHome(page: number, search: string, pagesize: number) {
-        return setToken.post('/products/', { page, search, pagesize })
+    async productList(page: number, inputSearch: string, rowsPerPage: number, category: string, priceValue1: number, priceValue2: number, gender: string, sortPrice: string) {
+        return setToken.post('/products/', { page, inputSearch, rowsPerPage, category, priceValue1, priceValue2, gender, sortPrice })
             .then(res => {
                 return res.data;
             })
     }
 
-    async delete(id: String) {
+    async productBrandList() {
+        return setToken.get('/brand/list')
+            .then(res => {
+                return res.data;
+            })
+    }
+
+    async productColorList() {
+        return setToken.get('/color/list')
+            .then(res => {
+                return res.data;
+            })
+    }
+
+    async productSizeList() {
+        return setToken.get('/size/list')
+            .then(res => {
+                return res.data;
+            })
+    }
+
+    async addProduct(product: any) {
+        return setToken.post('/add', { product })
+            .then(res => {
+                return res.data;
+            })
+    }
+
+    async updateProduct(product: ProductWithDetail) {
+        return setToken.put(`/update/${product.id}`, { product })
+            .then(res => {
+                return res.data;
+            })
+    }
+
+    async deleteProduct(id: String) {
         return setToken.delete(`/delete/${id}`)
             .then(res => {
                 return res.data;
             })
     }
 
-    async add(product: Product, page: number, search: string, pagesize: number) {
-        return setToken.post('/add/', { product, page, search, pagesize })
+    async addProductItem(productItem: Product, productId: string) {
+        return setToken.post('/add/product-item', { productItem, productId })
             .then(res => {
                 return res.data;
             })
     }
 
-    async update(product: Product, page: number, search: string, pagesize: number) {
-        return setToken.put(`/update/${product.id}`, { product, page, search, pagesize })
+    async updateProductItem(productItem: Product) {
+        return setToken.put(`/update/product-item/${productItem.productItemId}`, { productItem })
+            .then(res => {
+                return res.data;
+            })
+    }    
+
+    async deleteProductItem(idProduct: string, idProductItem: string) {
+        return setToken.delete(`/delete/product-item/${idProduct}/${idProductItem}`)
             .then(res => {
                 return res.data;
             })
     }
 
-    async productDetails(id: String): Promise<Product> {
+    async productDetails(id: String): Promise<ProductWithDetail> {
         return setToken.get(`/product/${id}`)
             .then(res => {
                 return res.data;
             })
-    }
-
-    async delivery(dataOrder: User, idOrder: string) {
-        return setToken.post('/checkout/delivery', { dataOrder, idOrder })
-    }
-
-    async listOrder(page: number, pagesize: number) {
-        return setToken.post('/orders', { page, pagesize })
-            .then(res => {
-                return res.data;
-            })
-    }
-
-    async orderProduct(id: string, quantity: number, price: number) {
-        return setToken.post(`/carts/${id}`, { quantity, price })
-    }
-
-    async getListCart(userId: string) {
-        return setToken.post(`/checkout/cart/`, { userId })
-            .then(res => {
-                return res.data;
-            })
-    }
-
-    async setReductionQuantity(idCart: string) {
-        return setToken.get(`/cart/reduction/${idCart}`)
-            .then(res => {
-                return res.data;
-            })
-    }
-
-    async setIncreaseQuantity(idCart: string) {
-        return setToken.get(`/cart/increase/${idCart}`)
-            .then(res => {
-                return res.data;
-            })
-    }
-
-    async deleteCartProduct(id: string) {
-        return setToken.delete(`/cart/item/${id}`)
-            .then(res => {
-                return res.data;
-            })
-    }
-
-    async login(user: object) {
-        return axios.post(`http://localhost:5000/users/login`, user)
-            .then(res => {
-                return res;
-            })
-    }
-
-    async getMe() {
-        return setToken.get(`/get-me`)
-            .then(res => {
-                return res;
-            })
-    }
+    }    
 
 }
 

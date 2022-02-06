@@ -1,209 +1,189 @@
+@import url(https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic);
+
 *{
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-html{
-    scroll-behavior: smooth;
-}
-
-body, span{
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
-
 a{
     text-decoration: none;
-    color: white;
 }
 
 ul{
     list-style: none;
 }
 
-.nav-bar{
-    background-color: #333333;
-    width: 100%;
+.wrap-menu {
+    background-color: #ffffff;    
+    padding: 25px 0;
+    width: 100%;    
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 6px 15px;
 }
 
-/* menu top */
-.nav-bar .tai-khoan{
+.limiter-menu, .main-menu, .wrap-icon-header {
     display: flex;
-    margin-left: 80%;
-    align-items: center;
-    padding-top: 10px;
-    padding-bottom: 5px;
+    align-items: center;    
 }
 
-.border-trai-dang-ki{
-    border-right: 1px solid #555555;
-    height: 20px;
-    padding: 8px;
-    margin-right: 20px;
+.container {    
+    justify-content: center;    
 }
 
-.nav-bar .dang-nhap a:hover{
-    color: #C89979;
-    transition-duration: 0.5s;
+.menu-navbar {
+    margin-left: 40px;
 }
 
-.nav-bar .dang-ki a:hover{
-    color: #C89979;
-    transition-duration: 0.5s;
+.item-menu-level-1 {
+    padding: 0 15px;
 }
 
-/* Menu mid */
-.nav-bar .menu-top{
-    max-width: 1300px;
-    margin: auto;
-    align-items: center;
-    display: flex;
+.item-menu-level-1 a:hover {
+    color: #6C7AE0;
+    transition-duration: 0.3s;
 }
 
-.nav-bar .mid{
-    border-bottom: 1px solid #555555;
-    padding-bottom: 7px;
+.item-menu-level-1 a {
+    font-family: Poppins;
+    color: #333333;
+    font-size: 14px;
+    font-weight: 500;
 }
 
-.nav-bar .logo img{
+.wrap-icon-header {
+    margin-left: 3%;
+}
+
+.input-search {
+    position: relative;    
+    width: 300px; 
+}
+
+.input-search input {
+    padding: 10px 20px 10px 40px;
     width: 100%;
+    border-radius: 5px;
+    border: 1px solid #E6E6E6;
 }
 
-.nav-bar .icon-menu-hien-thi{
+.input-search input:focus {    
+    border: 1px solid #E6E6E6;
+    outline: none;
+}
+
+.input-search svg {
+    position: absolute;    
+    margin-top: 8px;
+    font-size: 22px;  
+    vertical-align: center;
+    margin-left: 10px;
+}
+
+.input-search a {
+    color: #333333;
+}
+
+.input-search a:hover {
+    color: #6C7AE0;
+    transition-duration: 0.2s;
+}
+
+.cart-icon {
+    margin: 0 25px;
+}
+
+.cart-icon, .user-icon svg {
+    font-size: 28px;
+}
+
+.cart-icon a {
+    color: #333333;
+}
+
+.cart-icon a:hover {
+    color: #6C7AE0;
+    transition-duration: 0.3s;
+}
+
+.user-icon a {
+    color: #333333;
+}
+
+.user-icon .user-icon-item a:hover {
+    color: #6C7AE0;
+    transition-duration: 0.2s;
+}
+
+.main-menu-user {
+    position: absolute; 
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    margin-left: -40px;
+    z-index: 1100;
+}
+
+.item-menu-user a {
+    color: #333333;
+    font-size: 14px;
+    font-weight: 500;    
+    font-family: Poppins;
+}
+
+.item-menu-user {
     display: none;
+    padding: 8px 10px;    
+    margin: 8px 10px;
+    text-align: center;
+    border-radius: 5px;
 }
 
-.nav-bar .logo{
-    width: 17%;
-    margin-top: 10px;
+.item-menu-user-full-name {
+    display: none;
+    padding: 8px 20px;
+    margin: 10px 10px;
+    text-align: center;
+    border-radius: 5px;    
 }
 
-.nav-bar input{
-    padding: 12px 10px;
-    width: 400px;
-    margin-bottom: 20px;
-    border-radius: 4px 0 0 4px;
-    border: 0;
+.user-img-full-name, .user-log-out {
+    display: flex;
+    align-items: center;    
+    justify-content: center;
 }
 
-.nav-bar button{
-    padding: 8.5px 10px 12px 10px;
-    width: 65px;
-    border-radius: 0 4px 4px 0;
-    margin-left: -4.5px;
-    border: 0;
+.border-bottom-menu-user {
+    border-bottom: 1px solid #E6E6E6;
 }
 
-.nav-bar input, button{
-    display: inline-block;
-}
-
-.nav-bar .btn-primary:focus{
-    border: 0;
-    box-shadow: 0 0 4px white;
-    outline: none;
-}
-
-.nav-bar .btn{
-    background-color: #C89979;
-}
-
-.nav-bar .btn:focus{
-    border: 0;
-    outline: none;
-}
-
-.nav-bar .btn:hover{
-    background-color: #997157;
+.item-menu-user:hover a {
     cursor: pointer;
+    color: #ffffff;
+}
+
+.item-menu-user:hover svg {
+    cursor: pointer;
+    color: #ffffff;
+}
+
+.item-menu-user:hover {            
+    background-color: #6C7AE0;
+    cursor: pointer;    
+}
+
+.user-icon:hover .item-menu-user {    
     transition-duration: 0.5s;
+    display: block;    
 }
 
-.nav-bar .fas{
-    font-size: 18px;
-    color: white;
-}
-
-.nav-bar .thanh-tim-kiem{
-    margin-left: 15%;
-    margin-top: 25px;
-}
-
-/* Giỏ hàng, kho hàng */
-.nav-bar .gio-hang{
-    margin-left: 15%;
-    margin-right: 25px;
-}
-
-.nav-bar .icon-gio-hang:hover{
-    color: #C89979;
+.user-icon:hover .item-menu-user-full-name {    
     transition-duration: 0.5s;
+    display: block;    
 }
 
-.nav-bar span{
-    margin-left: 4px;
-    font-weight: 400;
-    word-spacing: -1px;
+.user-name-login {
+    margin-left: 5px;
 }
 
-.nav-bar .border-trai{
-    border-right: 1px solid #555555;
-    height: 30px;
-    padding: 0px;
-    margin-right: 20px;
-}
 
-.nav-bar .kho-hang span:hover{
-    color: #C89979;
-    transition-duration: 0.5s;
-}
 
-.kho-hang .fas:hover{
-    color: #C89979;
-    transition-duration: 0.5s;
-}
-
-/* Menu bottom */
-.menu-bottom{
-    background-color: #333333;
-    /* max-width: 1230px; */
-    margin: auto;
-    display: flex;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-  
-}
-
-.menu-bottom .thanh-tim-kiem-2{
-    display: none;
-}
-
-.menu-cap-1{
-    align-items: center;
-    display: flex;
-    margin: auto;
-}
-
-.item-menu-cap-1{
-    padding: 20px 30px;
-}
-
-.title-item-menu-cap-1{
-    font-size: 13px;
-    font-weight: 650;
-    line-height: 16px;
-    padding-bottom: 4px;
-}
-
-.title-item-menu-cap-1:hover{
-    color: #C89979;
-    border-bottom: 1px solid #C89979;
-    transition-duration: 0.4s;
-}
-
-.dong-menu-on-mobie{
-    display: none;
-}

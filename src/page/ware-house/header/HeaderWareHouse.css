@@ -1,0 +1,55 @@
+@import url(https://fonts.googleapis.com/css?family=Inter:100,200,300,regular,500,600,700,800,900);
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+a{
+    text-decoration: none;    
+}
+
+ul{
+    list-style: none;
+}
+
+.border-space-bottom {
+    border-bottom: 1px solid #2D3848;
+    margin-top: 60px;
+}
+
+.wrap-header-ware-house {
+    background-color: #111827;
+    overflow: auto;
+    height: 100vh;
+}
+
+.item-menu-header {
+    margin-top: 30px;   
+    text-align: left;     
+}
+
+.item-menu-level-2 a {
+    color: #D1D5DB;  
+    font-size: 15px;
+    line-height: 25px;
+    font-weight: 600;
+    font-family: Inter;    
+}
+
+.item-menu-level-2 {
+    padding: 8px 20px;
+    width: 86%;
+    margin: auto;
+    margin-top: 5px;
+    text-align: left;
+    border-radius: 8px;
+}
+
+.item-menu-level-2:hover {    
+    background-color: #242938;  
+    cursor: pointer;
+    transition-duration: 0.3s;    
+}
+

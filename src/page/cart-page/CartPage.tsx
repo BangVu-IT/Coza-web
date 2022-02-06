@@ -1,124 +1,96 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { productController } from '../../controller/ProductController';
 import './CartPage.css'
 import CartProduct from './CartProduct';
-import { useNavigate } from "react-router-dom";
-import { Cart } from '../../model/Cart';
-import { CartContext } from '../../store/CartProvider';
-import { Context } from '../../store/Provider';
+import Button from '@mui/material/Button';
+import { CartCreateContext } from '../../store/CartContext';
+import { cartController } from '../../controller/CartController';
+import { Link } from 'react-router-dom';
+import cartEmpty from '../../img/search.png';
 
 export default function CartPage() {
-    const [value, setValue] = useState<Cart[]>([]);    
-    const navigate = useNavigate();
-    const { cartNumber } = useContext(CartContext);
-    const { changeUsername, userId, changeUserId } = useContext(Context);
+    const { cartList, getCartList } = useContext(CartCreateContext)
 
     useEffect(() => {
-        productController.getMe().then(res => {
-            changeUsername(res.data.userName)
-            changeUserId(res.data.user_id)
-        })
-    }, [])    
+        getCartList();
+    }, [])
 
-    useEffect(() => {
-        productController.getListCart(userId).then(res => {
-            setValue(res);   
-            cartNumber(res.length)         
-        })
-    }, [userId])
-
-    const onReduction = (id: string) => {
-        productController.setReductionQuantity(id).then(res => {
-            productController.getListCart(userId).then(res => {            
-                setValue(res);
-            })
-        })        
-    }
-
-    const onIncrease = (id: string) => {
-        productController.setIncreaseQuantity(id).then(res => {
-            productController.getListCart(userId).then(res => {            
-                setValue(res);
-            })
+    const onReduction = (cartId: string) => {
+        cartController.setReductionQuantity(cartId).then(res => {
+            getCartList();
         })
     }
 
-    let totalProductMoney: number = 0;
-    for (let i = 0; i < value.length; i++) {
-        totalProductMoney += value[i].quantity * value[i].price;
-    }
-
-    const onRemove = (id: string) => {
-        productController.deleteCartProduct(id).then(res => {
-            productController.getListCart(userId).then(res => {
-                setValue(res);
-                cartNumber(res.length);
-            })
+    const onIncrease = (cartId: string, idProductItem: string) => {
+        cartController.setIncreaseQuantity(cartId, idProductItem).then(res => {
+            getCartList();
         })
     }
 
-    const onDelivery = () => {
-        navigate(`/checkout/delivery/${value[0].order_id}`);
+    const onDeleteCartProduct = (cartId: string) => {
+        cartController.deleteCartProduct(cartId).then(res => {
+            getCartList();
+        })
     }
-            
+
+
     return (
-        value.length != 0 ? 
-        <div className="cart-container">
-            <div className="danh-sach-mua">
-                <div className="container">
-                    <div className="content">
-                        <div className="item-danh-sach-mua">
-                            <div className="item-danh-sach">
+        cartList.length != 0 ?
+            <div className="cart-container">
+                <div className="danh-sach-mua">
+                    <div className="container">
+                        <div className="content">
+                            <div className="item-danh-sach-mua">
+                                <div className="item-danh-sach">
+                                </div>
+                                <div className="item-danh-sach">
+                                    <span>PRODUCT</span>
+                                </div>
+                                <div className="item-danh-sach">
+                                    <span>PRICE</span>
+                                </div>
+                                <div className="item-danh-sach">
+                                    <span>QUANTITY</span>
+                                </div>
+                                <div className="item-danh-sach">
+                                    <span>ACTION</span>
+                                </div>
                             </div>
-                            <div className="item-danh-sach">
-                                <span>Sản phẩm</span>
+                            <div id="carts" className="danh-sach-san-pham-mua">
+                                {
+                                    cartList.map((item, index) => (
+                                        <CartProduct key={index} cartProduct={item} onReduction={onReduction} onIncrease={onIncrease} onDeleteCartProduct={onDeleteCartProduct} />
+                                    ))
+                                }
                             </div>
-                            <div className="item-danh-sach">
-                                <span>Đơn giá</span>
-                            </div>
-                            <div className="item-danh-sach">
-                                <span>Số lượng</span>
-                            </div>
-                            <div className="item-danh-sach">
-                                <span>Thao tác</span>
-                            </div>
-                        </div>
-                        <div id="carts" className="danh-sach-san-pham-mua">                            
-                            {value.map((item, index) => <CartProduct key={index} cart={item} onReduction={onReduction} onIncrease={onIncrease} onRemove={onRemove} />)}
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div className="thanh-toan">
-                <div className="item-thanh-toan">
-                    <div className="title-thanh-toan">
-                        Tổng đơn đặt hàng:
+                <div className="thanh-toan">
+                    <div className="item-thanh-toan">
+                        <div className="title-thanh-toan">
+                            Total order: {cartList.length}
+                        </div>
                     </div>
-                    <div className="tong-tien">
-                        <span>{totalProductMoney.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} đ</span>
+                    <div className="btn-order">
+                        <Link to="/checkout/delivery"><Button variant="contained">CONTINUE TO CHECKOUT</Button></Link>
                     </div>
                 </div>
-                <div onClick={onDelivery} className="btn-order">
-                    <button>Đặt hàng</button>
+            </div>
+            :
+            <div className="cart-is-empty">
+                <div className="image-empty-cart">
+                    <img src={cartEmpty} alt="" />
                 </div>
+                <div className="title-empty-cart">
+                    <h5>Cart is empty!</h5>
+                </div>
+                <div className="desc-empty-cart">
+                    <p>Please add products to cart before make the payment!</p>
+                </div>
+                <Link to='/' className="btn-keep-buying">
+                    <Button variant="contained">Shop now!</Button>
+                </Link>
             </div>
-        </div>
-        :
-        <div className="cart-is-empty">
-            <div className="image-empty-cart">
-                <img src="https://beemall.io/search.png" alt="" />
-            </div>
-            <div className="title-empty-cart">
-                <h5>Giỏ hàng trống!</h5>
-            </div>
-            <div className="desc-empty-cart">
-                <p>Vui lòng thêm sản phẩm vào giỏ hàng trước khi thanh toán!</p>
-            </div>
-            <Link to='/' className="btn-keep-buying">
-                <button>Tiếp tục mua hàng!</button>
-            </Link>
-        </div>
     )
 }

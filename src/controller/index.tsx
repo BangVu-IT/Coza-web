@@ -1,5 +1,4 @@
 import axios from "axios";
-import { error } from "console";
 
 const setToken = axios.create({
     baseURL: 'http://localhost:5000',
@@ -9,13 +8,13 @@ const setToken = axios.create({
 setToken.interceptors.response.use(
     response => response,
     error => {
-        if (error.response.status !== 200) {
+        if (error.response.status == 403) {
+            localStorage.removeItem("Authorization");
             window.location.href = (`/users/login`);
         }
-    }
+    }   
 )
 
-const token = localStorage.getItem("Authorization") || "";
-setToken.defaults.headers.common['Authorization'] = token;
+setToken.defaults.headers.common['Authorization'] = localStorage.getItem("Authorization") || "";
 
 export {setToken}

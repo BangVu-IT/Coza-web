@@ -5,30 +5,31 @@
 }
 
 .main-container{
-    margin: 80px 0px;
+    margin: 70px 0px;
 }
 
 .container-dang-nhap{
-    max-width: 400px;    
+    max-width: 350px;    
     margin: auto;
     padding: 20px;
     border: 1px solid #ddd;
-    border-radius: 3px;
+    border-radius: 10px;
     background-color: white;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .container-dang-nhap .input-dang-nhap{
     margin-top:10px;
     outline: none;
     border: 1px solid #ddd;
-    border-radius: 3px;
+    border-radius: 5px;
     padding: 10px 10px;
     margin-bottom: 10px;
-    width: 100%;
+    width: 100%;    
 }
 
 .form-el {
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .btn-bt{
@@ -40,27 +41,37 @@
     width: 100%;
     padding: 10px;
     color: white;
-    background-color:#C69878 ;
-    outline: none;    
+    background-color:#6C7AE0;
+    outline: none;
     border: 0;
-    border-radius: 3px;
+    border-radius: 5px;
     margin-top: 5px;
     margin-bottom: 5px;
+    font-size: 14px;
 }  
 
+.form-dang-nhap {
+    margin-top: 20px;
+}
+
 .btn-dang-nhap:hover{
-    background-color:#997157 ;
+    background-color: #8995f3 ;
     cursor: pointer;
     transition-duration: 0.3s;
 }
 
 .title-content-login{
     text-align: center;
-    margin-top: 20px;
-    font-size: 14px;    
+    margin-top: 5px;
+    font-size: 14px;       
 }
 
 .logo-login{
     text-align: center;
     font-size: 60px;
+}
+
+.sign-in-account {
+    margin: 10px 0;
+    font-size: 14px;
 }

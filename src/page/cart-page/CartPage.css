@@ -4,13 +4,8 @@
     margin: 0;
 }
 
-body, span{
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
-
 a{
-    text-decoration: none;
-    color: white;
+    text-decoration: none;    
 }
 
 ul{
@@ -19,12 +14,12 @@ ul{
 
 /* Danh sách sản phẩm */
 .cart-container {    
-    min-height: 450px;
-    background-color: #ddd;
+    min-height: 550px;
+    background-color: #F5F5F5;
 }
 
 .danh-sach-mua {
-    padding-top: 30px;
+    padding-top: 20px;
 }
 
 .danh-sach-mua .container{
@@ -41,10 +36,12 @@ ul{
 }
 
 .danh-sach-mua .item-danh-sach-mua{
-    display: flex;
-    margin-left: 80px;
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: 1fr 2fr 1fr 1fr 1fr;
     font-size: 15px;
-    font-weight: 500;
+    font-weight: 600;
+    color: #555555;
 }
 
 .danh-sach-mua .content{
@@ -52,13 +49,15 @@ ul{
 }
 
 .danh-sach-mua .item-danh-sach{
-    padding: 20px 50px;
+    padding: 20px 0px;
+    width: 20%;
 }
 
-.danh-sach-mua .san-pham-mua{
-    display: flex;
-    height: 100px;
+.danh-sach-mua .san-pham-mua{        
     margin: 40px 0px;
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: 1fr 2fr 1fr 1fr 1fr;
 }
 
 .danh-sach-mua .anh-sp-mua img{
@@ -66,18 +65,14 @@ ul{
 }
 
 .danh-sach-mua #carts .san-pham-mua {
-    display: flex;
     flex-direction: row;
-    align-items: center;
-    margin-top: 100px;
+    align-items: center;    
 }
 
-.danh-sach-mua #carts .san-pham-mua .item-sp{
-   display: flex;
-    text-align: center;
-}
 .danh-sach-mua #carts .san-pham-mua .item-sp img{
     width: 80px;
+    border-radius: 3px;
+    margin-left: 10%;
 }
 .danh-sach-mua .san-pham-mua input{
     width: 100px;
@@ -87,42 +82,48 @@ ul{
     width: 50px;
 }
 
-.danh-sach-mua .san-pham-mua button{
-    width: 80%;
-    padding: 0 5px;
-    background-color: #C89979;
-    color:white;
-    border: 0px solid white;
-    margin-left: 2px;
-    border-radius: 3px;
-}
-
-.danh-sach-mua .san-pham-mua button:hover{
-    cursor: pointer;
-    background-color: #997157;
-    transition-duration: 0.5s;
-}
-
-.danh-sach-mua .gia-sp-mua{
-    margin-left: -20px;
-}
-
-.danh-sach-mua .anh-sp-mua{
-    margin-left: 50px;
-}
-
-.danh-sach-mua .gia-sp-mua{
-    margin-left: 60px;
-    width: 90px;
-}
-
-.danh-sach-mua .ten-sp-mua {
-    width: 100px;
-    margin-left: 100px;
+.product-color-size-info {
+    margin-top: 5px;
 }
 
 .so-luong{
-    margin-left: 55px;
+    display: flex;
+}
+
+.thao-tac {
+    margin-left: 10%;
+}
+
+.thao-tac svg:hover {
+    cursor: pointer;   
+}
+
+.so-luong button {
+    padding: 8px 14px;
+    border: 1px solid #E6E6E6;
+    background-color: #ffffff;
+}
+
+.so-luong .btn-fa-minus {
+    border-right: none;
+}
+
+.so-luong .btn-fa-minus:hover {
+    cursor: pointer;
+    background-color: #717EE0;
+    color: #ffffff;
+    transition-duration: 0.5s;
+}
+
+.so-luong .btn-fa-plus {
+    border-left: none;
+}
+
+.so-luong .btn-fa-plus:hover {
+    cursor: pointer;
+    background-color: #717EE0;
+    color: #ffffff;
+    transition-duration: 0.5s;
 }
 
 .thanh-toan {    
@@ -134,47 +135,42 @@ ul{
     width: 70%;
     margin: auto;
     margin-top: 20px;
-    height: 100px;
-    box-shadow: 0 0 10px 0px rgba(1, 1, 1, 0.5);    
+    height: 100px;    
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.title-thanh-toan {    
+    font-size: 18px;
+    font-weight: 500;    
+    color: #55566F;    
+    font-family: sans-serif;
 }
 
 .item-thanh-toan {
     float: left;
     margin-left: 90px;
-    margin-top: 30px;    
+    margin-top: 38px;
 }
 
 .btn-order {
     float: right;
-    margin-top: 35px;
+    margin-top: 28px;
     margin-right: 90px;    
 }
 
 .btn-order button {    
-    padding: 10px 80px;
-    background-color: #C89979;
+    padding: 10px 50px;
+    background-color: #222222;
     border: 0;
     color: #ffffff;
-    font-size: 16px;
-    font-weight: 500;
-    border-radius: 2px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 100px;
 }
 
 .btn-order button:hover {    
     cursor: pointer;
-    background-color: #997157;
-}
-
-.tong-tien{
-    margin-top: 10px;
-    font-size: 18px;
-    font-weight: 500;
-    color: #C89979;
-}
-
-.thao-tac{
-    margin-left: 130px;
-    width: 50px;
+    background-color: #717EE0;
 }
 
 .danh-sach-mua input{
@@ -184,12 +180,6 @@ ul{
 .danh-sach-mua input:focus{
     border: 1px solid #C89979;
     outline: none;
-}
-
-.danh-sach-mua .fas:hover{
-    color: #C89979;
-    cursor: pointer;
-    transition-duration: 0.1s;
 }
 
 .danh-sach-mua .tong-tien-thanh-toan{
@@ -207,10 +197,11 @@ ul{
 }
 
 /* empty cart */
-.cart-is-empty {    
+.cart-is-empty {
+    background-color: #F5F5F5;
     text-align: center;
-    margin-top: 70px;
-    min-height: 380px;
+    padding-top: 70px;
+    min-height: 540px;
     color: rgb(85, 86, 85);
 }
 .image-empty-cart img {
@@ -219,6 +210,7 @@ ul{
 
 .title-empty-cart {
     font-size: 28px;
+    margin-top: 25px;
 }
 
 .desc-empty-cart {
@@ -227,16 +219,20 @@ ul{
 }
 
 .btn-keep-buying button {
-    padding: 11px 30px;
-    border-radius: 5px;
+    padding: 10px 0;    
     border: 0;
-    background-color: #C89979;
+    background-color: #717EE0;
     color: #ffffff;
     font-size: 16px;
-    font-weight: 700;
+    font-weight: 600;
+    width: 15%;
 }
 
 .btn-keep-buying button:hover {
     cursor: pointer;
-    background-color: #997157;    
+    background-color: #838fec;    
+}
+
+.border-bottom-cart-product {
+    border-bottom: 1px solid #DDDDDD;
 }

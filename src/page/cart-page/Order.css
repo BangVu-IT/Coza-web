@@ -4,13 +4,8 @@
     margin: 0;
 }
 
-body, span{
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
-
 a{
-    text-decoration: none;
-    color: white;
+    text-decoration: none;    
 }
 
 ul{
@@ -18,8 +13,8 @@ ul{
 }
 
 .order-container {
-    background-color: #ddd;
-    min-height: 450px;
+    background-color: #F5F5F5;
+    min-height: 540px;
     padding-bottom: 20px;
     padding-top: 30px;
 }
@@ -28,8 +23,9 @@ ul{
     margin-top: 20px;
     margin-bottom: 30px;
     margin-left: 15%;
-    font-size: 20px;
-    color: #c58a5f;
+    font-size: 22px;
+    color: #555555;
+    font-family: sans-serif;
 }
 
 .item-list-product {    
@@ -45,26 +41,47 @@ ul{
 .input-information {
     text-align: right;
     height: 80px;
-    border-bottom: 1px solid #ddd;
-    padding-top: 22px;
-    padding-right: 20px;
+    border-bottom: 1.5px solid #E5E8EB;
+    padding: 20px 20px;
     font-size: 14px;
 }
 
 .order-time {
-    font-weight: 350;
+    display: inline-flex;  
+    font-size: 15px;  
+}
+
+.border-left-status-order {
+    border-right: 1.4px solid #333;
+    margin: 0 5px;
+}
+
+.order-time-info {
+    font-family: sans-serif;
+    font-weight: 200;
+    color: #454F65;
+    font-size: 14px;
+}
+
+.order-status-info {
+    font-size: 14px;
+    font-family: sans-serif;
+    font-size: 15px;  
+    color: #369A16;
+    font-weight: 600;
 }
 
 .basic-information {
-    margin-top: 5px;
-    font-weight: 350;
+    margin-top: 5px;    
+    font-family: sans-serif;
+    color: #454F65;
 }
 
 /* Thông tin sản phẩm */
-.product-information {
+.product-information-order-user {
     display: grid;
     grid-template-columns: 1fr 4fr 1fr;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px dashed #DDDDDD;
     align-items: center;
 }
 
@@ -83,26 +100,40 @@ ul{
 
 .name-product {
     width: 50%;
-    font-weight: 500;
+    color: #555655;
+    font-family: sans-serif;
+    font-weight: 550;
     font-size: 16px;
+    
 }
 
-.quantily {
-    margin-top: 10px;
+.color-size-product-info-order-history {
+    font-family: sans-serif;
+    margin: 8px 0;
     font-weight: 500;
+    font-size: 14px;
+    color: #555655;
+}
+
+.quantity {
+    font-family: sans-serif;    
+    font-weight: 550;
+    font-size: 14px;
+    color: #555655;
 }
 
 .price-product {
-    color: #C89979;
-    font-size: 18px;
-    font-weight: 440;
+    font-family: sans-serif;
+    color: #555655;
+    font-size: 20px;
+    font-weight: 500;
 }
 
 .total-money {
     display: grid;
     grid-template-columns: 4fr 4fr;
     align-items: center;
-    padding: 30px 0px;
+    padding: 25px 0px;
 }
 
 .estimated-cost {
@@ -110,37 +141,44 @@ ul{
 }
 
 .title-estimated-cost {
-    font-size: 14px;
+    font-family: sans-serif;
+    font-size: 16px;
     font-weight: 350;
-    margin-right: 10px;    
+    margin-right: 10px;  
+    color: #555655;  
 }
 
 .value-estimated-cost {
-    color: #C89979;
+    font-family: sans-serif;
+    color: #555655;
     font-weight: 500;
 }
 
 .into-money {
-    text-align: right;
+    text-align: right;     
 }
 
-.value-into-money {    
+.value-into-money {
+    font-family: sans-serif;
     margin-right: 20px;
-    color: #C89979;
+    color: #7180E1;
     font-size: 22px;
     font-weight: 600;
 }
 
 .title-into-money {
+    font-family: sans-serif;
     margin-right: 10px;
     font-weight: 350;
+    color: #555655;
 }
 
 /* empty orders */
-.orders-is-empty {    
+.orders-is-empty { 
+    background-color: #F5F5F5;   
     text-align: center;
-    margin-top: 70px;
-    min-height: 380px;
+    padding-top: 70px;
+    min-height: 540px;
     color: rgb(85, 86, 85);
 }
 .image-empty-orders img {
@@ -149,6 +187,7 @@ ul{
 
 .title-empty-orders {
     font-size: 28px;
+    margin-top: 25px;
 }
 
 .desc-empty-orders {
@@ -157,18 +196,18 @@ ul{
 }
 
 .btn-keep-buying-orders button {
-    padding: 11px 30px;
-    border-radius: 5px;
+    padding: 10px 0;    
     border: 0;
-    background-color: #C89979;
+    background-color: #717EE0;
     color: #ffffff;
     font-size: 16px;
-    font-weight: 700;
+    font-weight: 600;
+    width: 15%;
 }
 
 .btn-keep-buying-orders button:hover {
     cursor: pointer;
-    background-color: #997157;    
+    background-color: #838fec;    
 }
 
 .page-number-order {

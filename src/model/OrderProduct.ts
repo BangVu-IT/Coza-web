@@ -1,13 +1,14 @@
-import { OrderWithDetail } from "./Order";
 import { Product } from "./Product";
-import { User } from "./User";
 
 export interface OrderProduct {
-    id: string;
+    cartId: string;
     orderId: string;
-    idProduct: string;
+    idProductItem: string;
+    image: string;
+    name: string;
+    colorId: string;
+    sizeId: string;
     quantity: number;
     price: number;
     product?: Product;
-    user?: User;
 }

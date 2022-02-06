@@ -1,98 +1,74 @@
 import React, { useContext, useEffect, useState } from 'react'
-import ListOrder from './ListOrder';
-import './Order.css';
-import { productController } from '../../controller/ProductController';
 import { Link } from 'react-router-dom';
+import { orderController } from '../../controller/OrderController';
 import { OrderWithDetail } from '../../model/Order';
-import { Context } from '../../store/Provider';
-import { CartContext } from '../../store/CartProvider';
+import { UserCreateContext } from '../../store/UserContext';
+import ListOrder from './ListOrder';
+import Button from '@mui/material/Button';
+import './Order.css';
+import cartEmpty from '../../img/search.png';
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
 
 export default function OrderProduct() {
-
+    const { userInfo } = useContext(UserCreateContext)
     const [data, setData] = useState<OrderWithDetail[]>([]);
-    const [pageCount, setpageCount] = useState<[]>([]);
-    const [indexPage, setIndexPage] = useState<number>(1);    
-    const pageSize = 1;
-    const { changeUsername } = useContext(Context);
-    const { cartNumber } = useContext(CartContext);
+    const [page, setPage] = useState(1);
+    const [pageCount, setPageCount] = useState(0);
+    const rowsPerPage = 2;
+
+    const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
+        setPage(value);
+        getListOrder(userInfo.user_id, value, rowsPerPage);
+    };
 
     useEffect(() => {
-        productController.getMe().then(res => {
-            changeUsername(res.data.userName)
-        })
-    }, [])
+        getListOrder(userInfo.user_id, page, rowsPerPage);
+    }, [userInfo.user_id])
 
-    useEffect(() => {
-        productController.getListCart("1").then(res => {
-            cartNumber(res.length)            
-        })
-    }, [])
-
-    useEffect(() => {
-        productController.listOrder(1, pageSize).then(res => {
+    const getListOrder = (userId: string, page: number, rowsPerPage: number) => {
+        orderController.listOrder(userId, page, rowsPerPage).then(res => {
             setData(res.listOrders);
-            setpageCount(res.pageNumbers);
-        })
-    }, [])
-
-    const onPageNumber = (page: number) => {
-        productController.listOrder(page, pageSize).then(res => {
-            setData(res.listOrders);
-            setIndexPage(page);
+            setPageCount(res.pageNumbers.length)
         })
     }
 
-    const prePage = () => {        
-        if (indexPage > 1) {
-            onPageNumber(indexPage - 1);
-            setIndexPage(indexPage - 1);            
-        }       
-    }
-
-    const nextPage = () => {          
-        if (indexPage < pageCount.length) {
-            onPageNumber(indexPage + 1);
-            setIndexPage(indexPage + 1);
-        }        
-    }
-        
     return (
         data.length != 0 ?
-        <div className="order-container">
-            <div className="title-history">
-                <h4>Lịch sử mua hàng</h4>
-            </div>
-
-            {
-                data.map((item, index) => (
-                    <ListOrder key={index} dataOrder={item} />
-                ))
-            }
-
-            <div className="pageNumber page-number-order">
-                <i onClick={prePage} className= {(indexPage == 1 ? "page-limit" : "") + " fas fa-chevron-left"}></i>
-                <div className="page-number">
-                    {pageCount.map((item, index) => (
-                        <button className={indexPage == index + 1 ? "btn-page-number" : ""} onClick={() => onPageNumber(item)}>{item}</button>
-                    ))}
+            <div className="order-container">
+                <div className="title-history">
+                    <h4>Orders History</h4>
                 </div>
-                <i onClick={nextPage} className={(indexPage == pageCount.length ? "page-limit-top" : "") + " fas fa-chevron-right"}></i>
+
+                {
+                    data.map((item, index) => (
+                        <ListOrder key={index} dataOrder={item} />
+                    ))
+                }
+
+                <Stack direction="column"
+                    justifyContent="center"
+                    alignItems="center"
+                    spacing={5} style={{ marginBottom: "40px" }}>                    
+                    <div className="order-pagination">
+                        <Pagination count={pageCount} page={page} onChange={handleChange} />
+                    </div>
+                </Stack>
             </div>
-        </div>
-        :
-        <div className="orders-is-empty">
-            <div className="image-empty-orders">
-                <img src="https://beemall.io/search.png" alt="" />
+            :
+            <div className="orders-is-empty">
+                <div className="image-empty-orders">
+                    <img src={cartEmpty} alt="" />
+                </div>
+                <div className="title-empty-orders">
+                    <h5>Order list is empty!</h5>
+                </div>
+                <div className="desc-empty-orders">
+                    <p>Find the product that's right for you and order it now!</p>
+                </div>
+                <Link to='/' className="btn-keep-buying-orders">
+                    <Button variant="contained">Shop now!</Button>
+                </Link>
             </div>
-            <div className="title-empty-orders">
-                <h5>Bạn chưa đặt đơn hàng nào!</h5>
-            </div>
-            <div className="desc-empty-orders">
-                <p>Hãy tìm những sản phẩm phù hợp với bạn và đặt mua ngay nào!</p>
-            </div>
-            <Link to='/' className="btn-keep-buying-orders">
-                <button>Mua hàng ngay!</button>
-            </Link>
-        </div>
     )
 }

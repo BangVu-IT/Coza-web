@@ -1,96 +1,106 @@
-import React, { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { setToken } from '../../controller';
-import { productController } from '../../controller/ProductController';
-import { CartContext } from '../../store/CartProvider';
-import { Context } from '../../store/Provider';
 import '../Header/Header.css';
+import logo from '../../img/logo-01.png';
+import { BiUserCircle, BiSearchAlt2 } from 'react-icons/bi';
+import { FaRegUserCircle } from 'react-icons/fa';
+import { IoMdExit } from 'react-icons/io';
+import { UserCreateContext } from '../../store/UserContext';
+import Badge, { BadgeProps } from '@mui/material/Badge';
+import { styled } from '@mui/material/styles';
+import IconButton from '@mui/material/IconButton';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { CartCreateContext } from '../../store/CartContext';
+import { setToken } from '../../controller';
 
 export default function Header() {
+    const { userInfo, changeUserInfo } = useContext(UserCreateContext);
+    const { cartList, orderId, getCartList } = useContext(CartCreateContext);
+    const [searchInput, setSearchInput] = useState("");
 
-    const { userName, changeUsername } = useContext(Context);
-    const { productNumberCart, cartNumber } = useContext(CartContext);    
+    const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
+        '& .MuiBadge-badge': {
+            right: -3,
+            top: 13,
+            border: `2px solid ${theme.palette.background.paper}`,
+            padding: '0 4px',
+        },
+    }));
 
     const logOut = () => {
         localStorage.removeItem("Authorization");
         setToken.defaults.headers.common['Authorization'] = "";
-        changeUsername("");
-        cartNumber(0);
+        changeUserInfo();
     }
 
     return (
         <div>
-            <div>
-                <nav className="nav-bar" id="nav-bar">
-                    <div className="tai-khoan">
-                        <div className="user-name">
-                            <p>{userName}</p>
-                        </div>
-                        <div className="dang-nhap" id="dangnhap">
-                            <Link to="/users/login">Đăng nhập</Link>
-                        </div>
-                        <div className="border-trai-dang-ki">
-                        </div>
-                        <div className="dang-ki">
-                            <Link onClick={logOut} to="/users/login">Đăng xuất</Link>
-                        </div>
+            <div className="wrap-menu">
+                <nav className="limiter-menu container">
+                    <div className="logo-header">
+                        <Link to="/">
+                            <img src={logo} alt="" />
+                        </Link>
                     </div>
-                    <div className="mid" />
-                    {/* Menu mid */}
-                    <div className="top" />
-                    <div className="menu-top">
-                        <div className="icon-menu-hien-thi">
-                            <i className="fas fa-bars fa-2x" />
+
+                    <div className="menu-navbar">
+                        <ul className="main-menu">
+                            <li className="item-menu-level-1">
+                                <Link to="/">Home</Link>
+                            </li>
+
+                            <li className="item-menu-level-1">
+                                <Link to="/product">Shop</Link>
+                            </li>
+
+                            <li className="item-menu-level-1">
+                                <Link to="#">Features</Link>
+                            </li>
+
+                            <li className="item-menu-level-1">
+                                <Link to="#">About</Link>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div className="wrap-icon-header">
+                        <div className="input-search">
+                            <Link to={`/product?search=${searchInput}`}><BiSearchAlt2 /></Link>
+                            <input type="text" placeholder='Search product by name...' onChange={e => setSearchInput(e.target.value)} />
                         </div>
-                        <div className="logo">
-                            <Link to='/'>
-                                <img src="http://mauweb.monamedia.net/donghohaitrieu/wp-content/uploads/2019/07/logo-mona-2.png" alt="" />
+
+                        <div className="cart-icon">
+                            <Link to="/checkout/cart">
+                                <IconButton aria-label="cart">
+                                    <StyledBadge badgeContent={cartList.length} color="secondary">
+                                        <ShoppingCartIcon style={{ fontSize: "26px" }} />
+                                    </StyledBadge>
+                                </IconButton>
                             </Link>
                         </div>
-                        <div className="thanh-tim-kiem">
-                            <input id="btnPrimary-tim-san-pham" className="btn-primary" type="text" placeholder="Tìm kiếm..." />
-                            <button className="btn"><i className="fas fa-search" /></button>
-                        </div>
-                        <div className="gio-hang">
-                            <Link to="/checkout/cart"><i className="icon-gio-hang fas fa-shopping-cart" /><span>{productNumberCart}</span></Link>
-                        </div>
-                        <div className="border-trai">
-                        </div>
-                        <div className="kho-hang">
-                            <Link to="/user/orders" className="icon-kho-hang fas fa-box-open fa-1x"> <span>Đơn hàng</span></Link>
+
+                        <div className="user-icon">
+                            <span className='user-icon-item'><Link to='#'><FaRegUserCircle /></Link></span>
+                            <ul className="main-menu-user">
+                                <li className="item-menu-user-full-name">
+                                    <div className="user-img-full-name">
+                                        <BiUserCircle style={{ marginRight: "2px" }} /> {userInfo.full_name.substring(0, 7)} ...
+                                    </div>
+                                </li>
+                                <div className="border-bottom-menu-user"></div>
+                                <li className="item-menu-user">
+                                    <Link to="/orders">Order</Link>
+                                </li>
+                                <div className="border-bottom-menu-user"></div>
+                                <li className="item-menu-user">
+                                    <div className="user-log-out">
+                                        <IoMdExit style={{ marginRight: "2px" }} /><Link onClick={logOut} to="/users/login">Log out</Link>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
                     </div>
-                    {/* border */}
-                    <div className="mid" />
                 </nav>
-                {/* Menu bottom */}
-                <div className="menu-bottom" id="Menu-on-mobie">
-                    <ul className="menu-cap-1">
-                        <li className="item-menu-cap-1 thanh-tim-kiem-2">
-                            <input id="btnPrimary-tim-san-pham-2" className="btn-primary" type="text" placeholder="Tìm kiếm..." />
-                            <button className="btn"><i className="fas fa-search" /></button>
-                        </li>
-                        <li className="item-menu-cap-1">
-                            <Link to='/' className="title-item-menu-cap-1 item-menu-1">TRANG CHỦ</Link>
-                        </li>
-                        <li className="item-menu-cap-1">
-                            <Link to='#' className="title-item-menu-cap-1">GIỚI THIỆU</Link>
-                        </li>
-                        <li className="item-menu-cap-1">
-                            <Link to='#' className="title-item-menu-cap-1">ĐỒNG HỒ NAM</Link>
-                        </li>
-                        <li className="item-menu-cap-1">
-                            <Link to='#' className="title-item-menu-cap-1">ĐỒNG HỒ NỮ</Link>
-                        </li>
-                        <li className="item-menu-cap-1">
-                            <Link to='#' className="title-item-menu-cap-1">BLOGS</Link>
-                        </li>
-                        <li className="item-menu-cap-1">
-                            <Link to='#' className="title-item-menu-cap-1">LIÊN HỆ</Link>
-                        </li>
-                        <button className="dong-menu-on-mobie"><i id="icon-dong-menu" className="fas fa-times" />Đóng</button>
-                    </ul>
-                </div>
             </div>
         </div>
     )
