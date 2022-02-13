@@ -53,11 +53,15 @@ export default function Delivery() {
                             noValidate
                             autoComplete="off"
                         >
-                            <TextField sx={{ width: '60ch' }} id="outlined-basic" label="Full name" variant="outlined" onChange={e => setDataOrder({ ...dataOrder, fullName: e.target.value })} defaultValue={userInfo.full_name} />
-                            <TextField type={'number'} style={{ marginTop: "20px" }} sx={{ width: '29ch' }} id="outlined-basic" label="Phone number" variant="outlined" onChange={e => setDataOrder({ ...dataOrder, phoneNumber: e.target.value })} />
-                            <TextField style={{ marginTop: "20px" }} sx={{ width: '29ch' }} id="outlined-basic" label="Email" variant="outlined" onChange={e => setDataOrder({ ...dataOrder, email: e.target.value })} />
-                            <TextField style={{ marginTop: "20px" }} sx={{ width: '60ch' }} id="outlined-basic" label="Address" variant="outlined" onChange={e => setDataOrder({ ...dataOrder, address: e.target.value })} />
-                            <TextField style={{ marginTop: "20px" }} sx={{ width: '60ch' }} id="outlined-basic" label="Post code" variant="outlined" onChange={e => setDataOrder({ ...dataOrder, postCode: e.target.value })} />
+                            <TextField sx={{ width: '66ch' }} id="outlined-basic" label="Full name" variant="outlined" onChange={e => setDataOrder({ ...dataOrder, fullName: e.target.value })} defaultValue={userInfo.full_name} />
+
+                            <TextField type={'number'} style={{ marginTop: "20px" }} sx={{ width: '32.1ch' }} id="outlined-basic" label="Phone number" variant="outlined" onChange={e => setDataOrder({ ...dataOrder, phoneNumber: e.target.value })} />
+
+                            <TextField style={{ marginTop: "20px" }} sx={{ width: '32.1ch' }} id="outlined-basic" label="Email" variant="outlined" onChange={e => setDataOrder({ ...dataOrder, email: e.target.value })} />
+
+                            <TextField style={{ marginTop: "20px" }} sx={{ width: '66ch' }} id="outlined-basic" label="Address" variant="outlined" onChange={e => setDataOrder({ ...dataOrder, address: e.target.value })} />
+
+                            <TextField style={{ marginTop: "20px" }} sx={{ width: '66ch' }} id="outlined-basic" label="Post code" variant="outlined" onChange={e => setDataOrder({ ...dataOrder, postCode: e.target.value })} />
                         </Box>
                     </div>
                 </div>

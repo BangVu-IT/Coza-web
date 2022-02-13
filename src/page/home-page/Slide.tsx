@@ -10,10 +10,12 @@ export default function Slide() {
     const settings = {
         dots: true,
         infinite: true,
-        speed: 500,
+        speed: 500,        
         arrows: false,
         slidesToShow: 1,
-        slidesToScroll: 1
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 2500
     };
 
     return (

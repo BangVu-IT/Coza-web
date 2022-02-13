@@ -11,13 +11,15 @@ export default function ListOrder(props: Props) {
     for (let i = 0; i < itemProduct.length; i++) {
         estimatedCost += itemProduct[i].price * itemProduct[i].quantity
     }
+    let timeOrder = new Date(props.dataOrder.createdAt);
+
     return (
         <div>
             <div className="item-list-product">
                 <div className="input-information">
                     <div className="order-time">
                         <div className="order-time-info">
-                            {props.dataOrder.createdAt}
+                            {timeOrder.toLocaleString()}
                         </div>
 
                         <div className="border-left-status-order"></div>

@@ -11,7 +11,9 @@ interface Props {
     handleChange: any;
     search: string;
     onSetGenderValue: (gender: string) => void;
-    onSetSortPrice: (sortPriceValue: string) => void;
+    onSetSortItemProduct: (sortItemProductValue: string) => void;
+    genderValue: string;
+    sortPriceValue: string;   
 }
 
 export default function ProductListFilter(props: Props) {
@@ -20,8 +22,8 @@ export default function ProductListFilter(props: Props) {
         props.onSetGenderValue(e.target.value)
     }
 
-    const setSortPrice = (e: any) => {
-        props.onSetSortPrice(e.target.value)
+    const setSortItemProduct = (e: any) => {
+        props.onSetSortItemProduct(e.target.value)
     }
 
     return (
@@ -37,17 +39,19 @@ export default function ProductListFilter(props: Props) {
 
                 <div className="sort-product-by-gender">
                     <select name="" onChange={e => setGender(e)}>
-                        <option value="">Gender</option>
+                        <option value="" selected={props.genderValue != "" ? false : true}>Gender</option>
                         <option value="male">Male</option>
                         <option value="female">Female</option>
                     </select>
                 </div>
 
                 <div className="sort-product-by-price">
-                    <select name="" onChange={e => setSortPrice(e)}>
-                        <option value="">Price</option>
-                        <option value="asc">Price: Low to High</option>
-                        <option value="desc">Price: High to Low</option>
+                    <select name="" onChange={e => setSortItemProduct(e)}>
+                        <option value="" selected={props.sortPriceValue != "" ? false : true}>Sorting by</option>
+                        <option value="min(p2.price) asc,">Price: Low to High</option>
+                        <option value="min(p2.price) desc,">Price: High to Low</option>
+                        <option value="pl2.sold asc,">Sold: Low to High</option>
+                        <option value="pl2.sold desc,">Sold: High to Low</option>
                     </select>
                 </div>
             </div>

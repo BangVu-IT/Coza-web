@@ -16,6 +16,8 @@ export default function ProductListSearch() {
     const [category, setCategory] = useState("");
     const [priceValue1, setPriceValue1] = useState(0);
     const [priceValue2, setPriceValue2] = useState(1000000);
+    const [priceValueInput1, setPriceValueInput1] = useState("");
+    const [priceValueInput2, setPriceValueInput2] = useState("");
     const [gender, setGender] = useState("");
     const [sortPrice, setSortPrice] = useState("");
     const [searchParams] = useSearchParams();
@@ -62,6 +64,8 @@ export default function ProductListSearch() {
         setPriceValue2(1000000)
         setGender("")
         setSortPrice("")
+        setPriceValueInput1("")
+        setPriceValueInput2("")
     }
 
     const onSetGenderValue = (gender: string) => {
@@ -69,7 +73,7 @@ export default function ProductListSearch() {
         setPage(1)
     }
 
-    const onSetSortPrice = (sortPriceValue: string) => {
+    const onSetSortItemProduct = (sortPriceValue: string) => {
         setSortPrice(sortPriceValue)
         setPage(1)
     }
@@ -78,8 +82,9 @@ export default function ProductListSearch() {
         data.length != 0 ?
             <div className="product-search-list-background">
                 <div className='product-search-list'>
-                    <ProductSearchFilters brand={brand} onSetPriceValue={onSetPriceValue} onSetCategory={onSetCategory} onSetAllCategory={onSetAllCategory} onClearAll={onClearAll} categoryValue={category} />
-                    <ProductListFilter pageCount={pageCount} page={page} handleChange={handleChange} product={data} search={inputSearch || ""} onSetGenderValue={onSetGenderValue} onSetSortPrice={onSetSortPrice} />
+                    <ProductSearchFilters brand={brand} onSetPriceValue={onSetPriceValue} onSetCategory={onSetCategory} onSetAllCategory={onSetAllCategory} onClearAll={onClearAll} categoryValue={category} priceValueInput1={priceValueInput1} priceValueInput2={priceValueInput2} />
+                    
+                    <ProductListFilter pageCount={pageCount} page={page} handleChange={handleChange} product={data} search={inputSearch || ""} onSetGenderValue={onSetGenderValue} onSetSortItemProduct={onSetSortItemProduct} genderValue={gender} sortPriceValue={sortPrice} />
                 </div>
             </div>
             :

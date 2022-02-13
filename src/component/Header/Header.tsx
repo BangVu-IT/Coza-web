@@ -5,6 +5,7 @@ import logo from '../../img/logo-01.png';
 import { BiUserCircle, BiSearchAlt2 } from 'react-icons/bi';
 import { FaRegUserCircle } from 'react-icons/fa';
 import { IoMdExit } from 'react-icons/io';
+import { BsBoxSeam } from 'react-icons/bs';
 import { UserCreateContext } from '../../store/UserContext';
 import Badge, { BadgeProps } from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
@@ -60,6 +61,10 @@ export default function Header() {
                             <li className="item-menu-level-1">
                                 <Link to="#">About</Link>
                             </li>
+
+                            <li className="item-menu-level-1">
+                                <Link to="#">Contact</Link>
+                            </li>
                         </ul>
                     </div>
 
@@ -84,19 +89,29 @@ export default function Header() {
                             <ul className="main-menu-user">
                                 <li className="item-menu-user-full-name">
                                     <div className="user-img-full-name">
-                                        <BiUserCircle style={{ marginRight: "2px" }} /> {userInfo.full_name.substring(0, 7)} ...
+                                        <BiUserCircle style={{ marginRight: "2px", fontSize: "30px" }} /> {userInfo.full_name.substring(0, 7)} ...
                                     </div>
                                 </li>
+
                                 <div className="border-bottom-menu-user"></div>
-                                <li className="item-menu-user">
-                                    <Link to="/orders">Order</Link>
-                                </li>
+
+                                <Link to="/orders">
+                                    <li className="item-menu-user">
+                                        <div className="user-order-list">
+                                            <BsBoxSeam style={{ marginRight: "5px", fontSize: "26px" }} />Orders
+                                        </div>
+                                    </li>
+                                </Link>
+
                                 <div className="border-bottom-menu-user"></div>
-                                <li className="item-menu-user">
-                                    <div className="user-log-out">
-                                        <IoMdExit style={{ marginRight: "2px" }} /><Link onClick={logOut} to="/users/login">Log out</Link>
-                                    </div>
-                                </li>
+
+                                <Link to="/users/login" onClick={logOut}>
+                                    <li className="item-menu-user">
+                                        <div className="user-log-out">
+                                            <IoMdExit style={{ marginRight: "2px" }} />Log out
+                                        </div>
+                                    </li>
+                                </Link>
                             </ul>
                         </div>
                     </div>

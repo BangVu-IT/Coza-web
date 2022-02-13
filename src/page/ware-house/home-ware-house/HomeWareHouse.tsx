@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import '../home-ware-house/HomeWareHouse.css';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -14,10 +14,17 @@ import Button from '@mui/material/Button';
 import { IoAddSharp } from 'react-icons/io5';
 import FormInput from './FormInput';
 import RowTable from './RowTable';
-import FormInputItem from './FormInpuItem';
-import { Context } from '../../../store/ProductContext';
+import FormInputItem from './FormInputItem';
 
 interface Props {
+    // modal product
+    status: boolean;
+    handleClose: () => void;
+    handleOpen: () => void;
+    // modal product item
+    openModalItem: boolean;
+    handleCloseModalItem: () => void;
+    handleOpenModelItem: () => void;
     product: ProductWithDetail[];
     brand: Brand[];
     color: Color[];
@@ -27,7 +34,7 @@ interface Props {
     newProductUpdate: ProductWithDetail;
     onDelete: (id: string) => void;
     onAddProductItem: (productItem: Product) => void;
-    onDeleteProductItem: (idProduct: string, idProductItem: string) => void;
+    onDeleteProductItem: (idProduct: string) => void;
     getProductId: (productId: string) => void;
     pageCount: number;
     handleChangePage: (page: number) => void;
@@ -35,18 +42,6 @@ interface Props {
 }
 
 export default function HomeWareHouse(props: Props) {
-    const { idProductItem, changeDisableInput } = useContext(Context);
-    const [open, setOpen] = useState(false);
-    const handleClose = () => {
-        setOpen(false);
-        changeDisableInput(false);        
-    }
-    const handleOpen = () => setOpen(true);
-
-    const [openModalItem, setOpenModalItem] = useState(false);
-    const handleCloseModalItem = () => setOpenModalItem(false);
-    const handleOpenModelItem = () => setOpenModalItem(true);
-
     const [rowsPerPage, setRowsPerPage] = useState(5);
     const [page, setPage] = useState(0);
 
@@ -60,12 +55,12 @@ export default function HomeWareHouse(props: Props) {
         setPage(0);
         props.handleChangeRowsPerPage(parseInt(event.target.value, 10))
     };
-    
+
     return (
         <div>
             <div className="wrap-home-ware-house">
-                <Stack style={{ width: "18%", float: "right", marginTop: "30px" }}>
-                    <Button style={{padding: "10px 0px"}} onClick={handleOpen} variant="contained"><IoAddSharp style={{ fontSize: "18px", marginRight: "5px" }} /> New product</Button>
+                <Stack style={{ width: "15%", float: "right", marginTop: "30px" }}>
+                    <Button style={{ padding: "8px 0px" }} onClick={props.handleOpen} variant="contained"><IoAddSharp style={{ fontSize: "22px", marginRight: "5px" }} /> New product</Button>
                 </Stack>
 
                 <TableContainer component={Paper} style={{ marginTop: "100px" }}>
@@ -79,12 +74,13 @@ export default function HomeWareHouse(props: Props) {
                                 <TableCell align="left">Gender</TableCell>
                                 <TableCell align="left">CreatedAt</TableCell>
                                 <TableCell align="left">UpdatedAt</TableCell>
-                                <TableCell align="center">Action</TableCell>
+                                <TableCell align="left">Sold</TableCell>
+                                <TableCell align="center">Action</TableCell>                                
                             </TableRow>
                         </TableHead>
                         <TableBody>
                             {props.product.map((row, index) => (
-                                <RowTable key={row.id} row={row} handleOpen={handleOpen} onUpdate={() => props.onUpdate(row)} onDelete={() => props.onDelete(row.id)} handleOpenModelItem={handleOpenModelItem} getProductId={() => props.getProductId(row.id)} onDeleteProductItem={() => props.onDeleteProductItem(row.id, idProductItem)} />
+                                <RowTable key={index} row={row} handleOpen={props.handleOpen} onUpdate={() => props.onUpdate(row)} onDelete={() => props.onDelete(row.id)}handleOpenModelItem={props.handleOpenModelItem} getProductId={() => props.getProductId(row.id)} onDeleteProductItem={() => props.onDeleteProductItem(row.id)} />
                             ))}
                         </TableBody>
                     </Table>
@@ -101,9 +97,9 @@ export default function HomeWareHouse(props: Props) {
                 />
             </div>
 
-            <FormInput key={props.newProductUpdate.id} status={open} handleClose={handleClose} brand={props.brand} color={props.color} size={props.size} onAdd={props.onAdd} newProductUpdate={props.newProductUpdate} />
+            <FormInput key={props.newProductUpdate.id} status={props.status} handleClose={props.handleClose} brand={props.brand} color={props.color} size={props.size} onAdd={props.onAdd} newProductUpdate={props.newProductUpdate} />
 
-            <FormInputItem key={Math.random()} status={openModalItem} handleClose={handleCloseModalItem} color={props.color} size={props.size} onAddProductItem={props.onAddProductItem} />
+            <FormInputItem key={Math.random()} status={props.openModalItem} handleClose={props.handleCloseModalItem} color={props.color} size={props.size} onAddProductItem={props.onAddProductItem} />
         </div>
     )
 }

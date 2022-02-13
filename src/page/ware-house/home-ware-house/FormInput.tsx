@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Radio from '@mui/material/Radio';
@@ -10,9 +10,9 @@ import Modal from '@mui/material/Modal';
 import Typography from '@mui/material/Typography';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
-import { Brand, Color, Product, ProductLine, ProductWithDetail, Size } from '../../../model/Product';
+import { Brand, Color, ProductWithDetail, Size } from '../../../model/Product';
 import { Context } from '../../../store/ProductContext';
 
 interface Props {
@@ -37,7 +37,7 @@ const style = {
 };
 
 export default function FormInput(props: Props) {
-    const {disableInput } = useContext(Context);
+    const { disableInput } = useContext(Context);
     const [colorProduct, setColorProduct] = useState("");
     const [sizeProduct, setSizeProduct] = useState("");
     const [newProduct, setNewProduct] = useState({
@@ -49,6 +49,7 @@ export default function FormInput(props: Props) {
         gender: props.newProductUpdate.gender,
         createdAt: "",
         updatedAt: "",
+        sold: 0,
         productItem: {
             productItemId: "",
             productId: "",
@@ -59,7 +60,7 @@ export default function FormInput(props: Props) {
             quantity: 0
         }
     });
-    
+    console.log(newProduct);
     return (
         <div>
             <Modal
@@ -67,9 +68,9 @@ export default function FormInput(props: Props) {
                 open={props.status}
                 onClose={props.handleClose}
                 aria-labelledby="keep-mounted-modal-title"
-                aria-describedby="keep-mounted-modal-description"                
+                aria-describedby="keep-mounted-modal-description"
             >
-                <Box sx={{...style, borderRadius: "5px"}}>
+                <Box sx={{ ...style, borderRadius: "5px" }}>
                     <Typography id="keep-mounted-modal-title" variant="h6" component="h2">
                         Add product
                     </Typography>
@@ -81,7 +82,7 @@ export default function FormInput(props: Props) {
                         noValidate
                         autoComplete="off"
                     >
-                        <TextField sx={{ m: 1, width: '61.8ch' }} id="outlined-basic" label="Image product" variant="outlined" onChange={e => setNewProduct({ ...newProduct, imageProduct: e.target.value })} defaultValue={newProduct.imageProduct} />
+                        <TextField sx={{ m: 1, width: '61.8ch' }} id="outlined-basic" label="Product image" variant="outlined" onChange={e => setNewProduct({ ...newProduct, imageProduct: e.target.value })} defaultValue={newProduct.imageProduct} />
 
                         <TextField sx={{ m: 1, width: '30ch' }} id="outlined-basic" label="Name" variant="outlined" onChange={e => setNewProduct({ ...newProduct, name: e.target.value })} defaultValue={newProduct.name} />
 
@@ -101,7 +102,7 @@ export default function FormInput(props: Props) {
                             </Select>
                         </FormControl>
 
-                        <FormControl style={{marginLeft: "15px"}} component="fieldset">
+                        <FormControl style={{ marginLeft: "15px" }} component="fieldset">
                             <FormLabel component="legend">Gender</FormLabel>
                             <RadioGroup row aria-label="gender" name="row-radio-buttons-group" onChange={e => setNewProduct({ ...newProduct, gender: e.target.value })} defaultValue={newProduct.gender}>
                                 <FormControlLabel value="male" control={<Radio />} label="Male" />
@@ -109,7 +110,7 @@ export default function FormInput(props: Props) {
                             </RadioGroup>
                         </FormControl>
 
-                        <TextField disabled={disableInput ? true : false} sx={{ m: 1, width: '61.8ch' }} id="outlined-basic" label="Image product item" variant="outlined" onChange={e => setNewProduct({ ...newProduct, productItem: { ...newProduct.productItem, image: e.target.value } })} />
+                        <TextField disabled={disableInput ? true : false} sx={{ m: 1, width: '61.8ch' }} id="outlined-basic" label="Product item image" variant="outlined" onChange={e => setNewProduct({ ...newProduct, productItem: { ...newProduct.productItem, image: e.target.value } })} />
 
                         <FormControl>
                             <InputLabel disabled={disableInput ? true : false} id="demo-simple-select-label">Color</InputLabel>
@@ -119,7 +120,7 @@ export default function FormInput(props: Props) {
                                 id="demo-simple-select"
                                 value={colorProduct}
                                 label="Color"
-                                onChange={e => { setColorProduct(e.target.value as string); setNewProduct({ ...newProduct, productItem: { ...newProduct.productItem, color: e.target.value } })}}
+                                onChange={e => { setColorProduct(e.target.value as string); setNewProduct({ ...newProduct, productItem: { ...newProduct.productItem, color: e.target.value } }) }}
                                 sx={{ width: '30ch' }}
                             >
                                 {props.color.map(colorItem =>
@@ -149,8 +150,8 @@ export default function FormInput(props: Props) {
 
                         <TextField disabled={disableInput ? true : false} type={'number'} sx={{ m: 1, width: '30ch' }} id="outlined-basic" label="Price" variant="outlined" onChange={e => setNewProduct({ ...newProduct, productItem: { ...newProduct.productItem, price: Number(e.target.value) } })} />
 
-                        <Button style={{ marginTop: "20px", padding: "8px 0" }} sx={{ width: '69.8ch' }} variant="contained" disableElevation onClick={() => { props.onAdd(newProduct); props.handleClose() }}>
-                            Add product
+                        <Button style={{ marginTop: "20px", padding: "8px 0" }} sx={{ width: '69.8ch' }} variant="contained" disableElevation onClick={() => props.onAdd(newProduct)}>
+                            {newProduct.id != "" ? "Update product" : "Add Product"}
                         </Button>
                     </Box>
                 </Box>

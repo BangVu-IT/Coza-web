@@ -30,7 +30,7 @@ ul{
     text-align: left;     
 }
 
-.item-menu-level-2 a {
+.item-menu-level-2 {
     color: #D1D5DB;  
     font-size: 15px;
     line-height: 25px;
@@ -47,7 +47,7 @@ ul{
     border-radius: 8px;
 }
 
-.item-menu-level-2:hover {    
+.item-menu-level-2:hover {
     background-color: #242938;  
     cursor: pointer;
     transition-duration: 0.3s;    

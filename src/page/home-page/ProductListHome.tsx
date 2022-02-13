@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { productController } from '../../controller/ProductController';
 import { ProductWithDetail } from '../../model/Product';
-import Pagination from '@mui/material/Pagination';
-import Stack from '@mui/material/Stack';
 import Products from './Products';
 import './Products.css';
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import { Pagination, Navigation } from "swiper";
 
 export default function ProductListHome() {
     const [data, setData] = useState<ProductWithDetail[]>([]);
@@ -16,7 +19,8 @@ export default function ProductListHome() {
     const [priceValue1, setPriceValue1] = useState(0);
     const [priceValue2, setPriceValue2] = useState(1000000);
     const [gender, setGender] = useState("");
-    const [sortPrice, setSortPrice] = useState("");
+    const [sortPrice, setSortPrice] = useState("pl2.sold desc,");
+    let arrProductList: ProductWithDetail[] = [];
 
     const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
         setPage(value);
@@ -30,29 +34,41 @@ export default function ProductListHome() {
     const getList = (page: number, inputSearch: string, rowsPerPage: number, category: string, priceValue1: number, priceValue2: number, gender: string, sortPrice: string) => {
         productController.productList(page, inputSearch, rowsPerPage, category, priceValue1, priceValue2, gender, sortPrice).then(res => {
             setData(res.productListAll)
+            for (let i = 0; i < res.productListAll.length; i++) {
+                arrProductList.push(res.productListAll[i])
+            }
             setPageCount(Math.ceil(res.pageNumberProduct / rowsPerPage))
         })
     }
-    
+
+    const data2 = data.slice(0, 4)
+    const data3 = data.slice(4, 8)
+
     return (
         <div className='product-list-container'>
             <div className="product-filter-title-item">
                 <div className="product-overview-title">
-                    <h4>PRODUCT OVERVIEW</h4>
+                    BEST SELLER
                 </div>
+            </div>            
+            <div className='slide-show-products'>
+                <Swiper
+                    spaceBetween={15}
+                    navigation={false}
+                    slidesPerView={4}
+                    pagination={{
+                        clickable: true,
+                    }}
+                    modules={[Pagination, Navigation]}
+                    className="mySwiper"
+                >
+                    {data.map((item, index) => (
+                        <SwiperSlide key={index} className='product-list' >
+                            <Products product={item} />
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
             </div>
-            <Stack direction="column"
-                justifyContent="center"
-                alignItems="center"
-                spacing={5} style={{ paddingBottom: "40px" }}>
-                <div className="product-list">
-                    {data.map((item, index) => <Products key={index} product={item} />)}
-                </div>
-
-                <div className="product-pagination">
-                    <Pagination count={pageCount} page={page} onChange={handleChange} />
-                </div>
-            </Stack>
-        </div>
+        </div >
     )
 }

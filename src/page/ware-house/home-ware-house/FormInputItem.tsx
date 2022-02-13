@@ -1,25 +1,21 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
 import Modal from '@mui/material/Modal';
 import Typography from '@mui/material/Typography';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
-import { Brand, Color, Product, ProductLine, ProductWithDetail, Size } from '../../../model/Product';
+import { Color, Product, Size } from '../../../model/Product';
 import { Context } from '../../../store/ProductContext';
 
 interface Props {
     status: boolean;
     handleClose: () => void;    
     color: Color[];
-    size: Size[];  
+    size: Size[];
     onAddProductItem: (productItem: Product) => void
 }
 
@@ -35,9 +31,7 @@ const style = {
 };
 
 export default function FormInputItem(props: Props) {
-    const { productItem } = useContext(Context);
-    const [colorProduct, setColorProduct] = useState("");
-    const [sizeProduct, setSizeProduct] = useState("");
+    const { productItem } = useContext(Context); 
     const [newProductItem, setNewProductItem] = useState<Product>({
         productItemId: productItem.productItemId,
         productId: productItem.productId,
@@ -109,8 +103,8 @@ export default function FormInputItem(props: Props) {
 
                         <TextField sx={{ width: '29.6ch' }} type={'number'} style={{ marginTop: "20px" }} id="outlined-basic" label="Price" variant="outlined" onChange={e => setNewProductItem({ ...newProductItem, price: Number(e.target.value) })} defaultValue={newProductItem.price} />
 
-                        <Button sx={{ width: '69ch' }} style={{ marginTop: "20px", padding: "8px 0" }} variant="contained" disableElevation onClick={() => { props.onAddProductItem(newProductItem); props.handleClose() }}>
-                            Add product item
+                        <Button sx={{ width: '69ch' }} style={{ marginTop: "20px", padding: "8px 0" }} variant="contained" disableElevation onClick={() => props.onAddProductItem(newProductItem)}>
+                            {newProductItem.productItemId != "" ? "Update product item" : "Add product item"}
                         </Button>
                     </Box>
                 </Box>

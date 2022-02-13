@@ -17,6 +17,28 @@ ul{
     background-color: #FFFFFF;    
     height: 100vh;  
     padding: 0px 25px;
-    overflow: auto;    
+    overflow: auto;
 }
+
+.icon-action-product svg {
+    font-size: 18px;
+}
+
+.icon-action-product svg:hover {
+    cursor: pointer;
+    color: #3676D2;
+    transition-duration: 0.2s;
+}
+
+.icon-action-product-item svg {
+    font-size: 18px;
+}
+
+.icon-action-product-item svg:hover {
+    cursor: pointer;
+    color: #3676D2;
+    transition-duration: 0.2s;
+}
+
+
 

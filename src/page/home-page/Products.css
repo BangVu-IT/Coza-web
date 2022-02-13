@@ -1,5 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,regular,italic,500,500italic,700,700italic,900,900italic);
 @import url(https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic);
+
 *{
     box-sizing: border-box;
     margin: 0;
@@ -22,68 +23,77 @@ ul{
     width: 70%;
     margin: auto;
     margin-top: 5%;
+    margin-bottom: 5%;
 }
 
 .product-overview-title {
-    font-family: Poppins;
-    font-size: 26px;
+    font-family: Roboto;
+    font-size: 24px;
+    font-weight: 500;
 }
 
-.product-list {
-    display: grid;
-    grid-gap: 15px;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    margin-top: 40px;
+.product-list-container .mySwiper {
+    min-height: 500px;
 }
 
-.product {
+.product-list-container .product-list {
+    margin-top: 30px;    
+}
+
+.product-list-container .product-list .product {
     border: 1px solid #E5E8EB;
     border-radius: 3px;
     background-color: #ffffff;
+    height: 405px;     
 }
 
-.product:hover {
+.swiper-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet, .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+}
+
+.product-list-container .product:hover {
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 15px;
     transition-duration: 0.2s;
 }
 
-.product .product-img {
+.product-list-container .product .product-img {
     height: 260px;    
 }
 
-.product .product-img img {
+.product-list-container .product .product-img img {
     width: 100%;
     height: 100%;
     background-size: cover;
 }
 
-.product-information {
+.product-list-container .product-information {
     padding: 0 8px;
 }
 
-.product .product-name {
+.product-list-container .product .product-name {
     margin-top: 20px;
     font-family: Poppins;    
     font-size: 14px;
 }
 
-.product .product-name a {    
+.product-list-container .product .product-name a {    
     font-family: sans-serif;
     color: #555655;
     font-weight: 400;
 }
 
-.product .product-price {
+.product-list-container .product .product-price {
     margin-top: 25px;
     color: #333333;
     font-size: 18px;
 }
 
-.currency-unit {
+.product-list-container .currency-unit {
     font-size: 14px;    
 }
 
-.product-brand {
+.product-list-container .product-brand {
     margin-top: 10px;
     margin-bottom: 10px;
     font-size: 12px;

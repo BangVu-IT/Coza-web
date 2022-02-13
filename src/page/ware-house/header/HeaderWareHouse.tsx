@@ -1,23 +1,26 @@
 import React from 'react';
 import '../header/HeaderWareHouse.css';
-import logo from '../../../img/logo-01.png';
 import { Link } from 'react-router-dom';
 
 export default function HeaderWareHouse() {
     return (
         <div>
-            <div className="wrap-header-ware-house">                
+            <div className="wrap-header-ware-house">
                 <div className="border-space-bottom">
-                </div>                
+                </div>
                 <div className="menu-header">
                     <ul className="item-menu-header">
-                        <li className='item-menu-level-2'>
-                            <Link to="#">Home</Link>
-                        </li>
+                        <Link to="/admin">
+                            <li className='item-menu-level-2'>
+                                Products
+                            </li>
+                        </Link>
 
-                        <li className='item-menu-level-2'>
-                            <Link to="#">Products</Link>
-                        </li>
+                        <Link to="/admin/orders">
+                            <li className='item-menu-level-2'>
+                                Orders
+                            </li>
+                        </Link>
                     </ul>
                 </div>
             </div>

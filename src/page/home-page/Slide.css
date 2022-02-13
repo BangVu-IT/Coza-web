@@ -33,6 +33,10 @@ ul{
     margin-bottom: 20px;
 }
 
+.slick-dots li button:before {
+    font-size: 10px;
+}
+
 .slide-title-content {
     position: absolute;
     top: 30%;

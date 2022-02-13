@@ -17,6 +17,20 @@ class OrderController {
             })
     }
 
+    async listOrderManage(page: number, rowsPerPage: number) {
+        return setToken.post('/order-list', { page, rowsPerPage })
+            .then(res => {
+                return res.data;
+            })
+    }
+
+    async onUpdateOrderStatus(orderId: string, orderStatus: string) {
+        return setToken.post('/order/update', { orderId, orderStatus })
+            .then(res => {
+                return res.data;
+            })
+    }
+
 }
 
 export const orderController = new OrderController();

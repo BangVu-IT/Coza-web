@@ -1,7 +1,7 @@
 import { OrderProduct } from "./OrderProduct";
 
 export default interface Order {
-    id: string;
+    orderId: string;
     userId: string;
     createdAt: string;
     isTemporary: boolean;

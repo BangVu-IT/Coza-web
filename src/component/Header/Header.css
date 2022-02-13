@@ -26,12 +26,13 @@ ul{
     align-items: center;    
 }
 
-.container {    
-    justify-content: center;    
+.container {
+    width: 70%;
+    margin: auto;
 }
 
 .menu-navbar {
-    margin-left: 40px;
+    margin-left: 3%;
 }
 
 .item-menu-level-1 {
@@ -55,8 +56,8 @@ ul{
 }
 
 .input-search {
-    position: relative;    
-    width: 300px; 
+    position: relative;
+    min-width: 85%;    
 }
 
 .input-search input {
@@ -72,7 +73,7 @@ ul{
 }
 
 .input-search svg {
-    position: absolute;    
+    position: absolute;
     margin-top: 8px;
     font-size: 22px;  
     vertical-align: center;
@@ -89,7 +90,7 @@ ul{
 }
 
 .cart-icon {
-    margin: 0 25px;
+    padding: 0 24px;
 }
 
 .cart-icon, .user-icon svg {
@@ -123,7 +124,7 @@ ul{
     z-index: 1100;
 }
 
-.item-menu-user a {
+.item-menu-user {
     color: #333333;
     font-size: 14px;
     font-weight: 500;    
@@ -152,11 +153,17 @@ ul{
     justify-content: center;
 }
 
+.user-order-list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .border-bottom-menu-user {
     border-bottom: 1px solid #E6E6E6;
 }
 
-.item-menu-user:hover a {
+.item-menu-user:hover {
     cursor: pointer;
     color: #ffffff;
 }

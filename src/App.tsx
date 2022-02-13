@@ -12,10 +12,14 @@ import { CartContext } from './store/CartContext';
 import CartPage from './page/cart-page/CartPage';
 import Delivery from './page/cart-page/Delivery';
 import ProductListSearch from './page/home-page/ProductListSearch';
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import Orders from './page/ware-house/Orders';
 
 export function App() {
   return (
     <BrowserRouter>
+      <ToastContainer />
       <UserContext>
         <ProductContext>
           <CartContext>
@@ -23,6 +27,7 @@ export function App() {
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/admin" element={<WareHouse />} />
+              <Route path="/admin/orders" element={<Orders />} />
               <Route path="/product/:idProduct" element={<ProductDetails />} />
               <Route path="/users/login" element={<Login />} />
               <Route path="/checkout/cart" element={<CartPage />} />

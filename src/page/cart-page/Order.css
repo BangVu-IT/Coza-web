@@ -35,6 +35,7 @@ ul{
     margin: auto;    
     margin-bottom: 20px;
     border-radius: 2px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 /* Thông tin người dùng, ngày order */

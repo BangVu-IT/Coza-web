@@ -24,6 +24,7 @@ export default function ProductInformation() {
         gender: "",
         createdAt: "",
         updatedAt: "",
+        sold: 0,
         productItem: [{
             productItemId: "",
             productId: "",
@@ -45,6 +46,7 @@ export default function ProductInformation() {
     let productFilterSize: any[] = [];
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         productController.productDetails(String(idProduct)).then(res => {
             setData(res);
             setCurrentPrice(res.productItem[0].price);
@@ -151,6 +153,8 @@ export default function ProductInformation() {
             idProductItem: String(idProductItem),
             image: String(imageProductItem),
             name: data.name,
+            brand: data.brand,
+            gender: data.gender,
             colorId: colorValue,
             sizeId: sizeValue,
             quantity: quantity,
@@ -182,7 +186,7 @@ export default function ProductInformation() {
                 <div className="product-details-price-brand">
                     <span className="product-details-price">${currentPrice}</span>
                     <div className="border-space"></div>
-                    <span className="product-details-sold">0 SOLD</span>
+                    <span className="product-details-sold">{data.sold} SOLD</span>
                 </div>
 
                 <div className="product-details-color">

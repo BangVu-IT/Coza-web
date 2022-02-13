@@ -20,9 +20,8 @@ ul{
 
 .product-details-container {
     background-color: #ffffff;
-    display: flex;    
-    /* grid-template-columns: 1fr 1fr; */
-    width: 65%;
+    display: flex;
+    width: 70%;
     margin: auto;
     border-radius: 5px;
     padding: 20px 15px;

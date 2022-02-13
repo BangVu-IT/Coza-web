@@ -21,7 +21,7 @@ ul{
 .Delivery-container {  
     padding-top: 30px;
     display: grid;    
-    width: 65%;
+    width: 70%;
     margin: auto;
     grid-gap: 20px;
     grid-template-columns: 2fr 1fr;

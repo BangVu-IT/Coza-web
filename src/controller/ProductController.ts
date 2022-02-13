@@ -39,8 +39,22 @@ class ProductController {
             })
     }
 
+    async addProductItem(productItem: Product, productId: string) {
+        return setToken.post('/add/product-item', { productItem, productId })
+            .then(res => {
+                return res.data;
+            })
+    }
+
     async updateProduct(product: ProductWithDetail) {
         return setToken.put(`/update/${product.id}`, { product })
+            .then(res => {
+                return res.data;
+            })
+    }
+
+    async updateProductItem(productItem: Product) {
+        return setToken.put(`/update/product-item/${productItem.productItemId}`, { productItem })
             .then(res => {
                 return res.data;
             })
@@ -52,20 +66,6 @@ class ProductController {
                 return res.data;
             })
     }
-
-    async addProductItem(productItem: Product, productId: string) {
-        return setToken.post('/add/product-item', { productItem, productId })
-            .then(res => {
-                return res.data;
-            })
-    }
-
-    async updateProductItem(productItem: Product) {
-        return setToken.put(`/update/product-item/${productItem.productItemId}`, { productItem })
-            .then(res => {
-                return res.data;
-            })
-    }    
 
     async deleteProductItem(idProduct: string, idProductItem: string) {
         return setToken.delete(`/delete/product-item/${idProduct}/${idProductItem}`)
@@ -79,7 +79,7 @@ class ProductController {
             .then(res => {
                 return res.data;
             })
-    }    
+    }
 
 }
 

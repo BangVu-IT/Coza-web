@@ -23,8 +23,8 @@ export default function Products(props: Props) {
             </div>
 
             <div className="product-information">
-                <div className="product-name">
-                    <Link to={`/product/${props.product.id}`}>{props.product.name}</Link>
+                <div className="product-name">               
+                    <Link to={`/product/${props.product.id}`}>{props.product.name.length == props.product.name.substring(0, 50).length ? props.product.name.substring(0, 50) : props.product.name.substring(0, 50) + "..."}</Link>
                 </div>
                 {
                     props.product.productItem.length > 1 ?

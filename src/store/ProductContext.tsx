@@ -11,7 +11,7 @@ interface ProductItemContextDefault {
     idProductItem: string;
     changeIdProductItem: (idProductItem: string) => void;
     disableInput: boolean;
-    changeDisableInput: (disableValue: boolean) => void;
+    changeDisableInput: (disableValue: boolean) => void;    
 }
 
 const productItemDefault = {
@@ -30,7 +30,7 @@ const productItemDefault = {
     idProductItem: "",
     changeIdProductItem: () => { },
     disableInput: false,
-    changeDisableInput: () => { }
+    changeDisableInput: () => { },    
 }
 
 export const Context = createContext<ProductItemContextDefault>(productItemDefault);
@@ -49,15 +49,11 @@ export function ProductContext({ children }: ContextProvider) {
         quantity: 0
     });
     const [idProductItem, setIdProductItem] = useState("");
-    const [disableInput, setDisableInput] = useState(false);
+    const [disableInput, setDisableInput] = useState(false);    
 
     const updateProductItem = (productItem: Product) => {
         setProductItem(productItem)
     }
-
-    useEffect(() => {
-        changeIdProductItem(idProductItem);            
-    }, [idProductItem])
 
     const changeIdProductItem = (idProductItem: string) => {
         setIdProductItem(idProductItem)
@@ -65,7 +61,7 @@ export function ProductContext({ children }: ContextProvider) {
 
     const changeDisableInput = (disableValue: boolean) => {
         setDisableInput(disableValue)
-    }
+    }  
 
     const data = { productItem, updateProductItem, idProductItem, changeIdProductItem,
     disableInput, changeDisableInput }

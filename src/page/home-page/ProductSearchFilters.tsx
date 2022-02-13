@@ -9,6 +9,8 @@ interface Props {
     onSetAllCategory: (categoryValue: string) => void;
     onClearAll: () => void;
     categoryValue: string;
+    priceValueInput1: string;
+    priceValueInput2: string;
 }
 
 export default function ProductSearchFilters(props: Props) {
@@ -16,11 +18,17 @@ export default function ProductSearchFilters(props: Props) {
         value1: 0,
         value2: 1000000
     })
+    const [priceValueInput, setPriceValueInput] = useState({
+        priceValueInput1: props.priceValueInput1,
+        priceValueInput2: props.priceValueInput2
+    })
     const [brandValue, setBrandValue] = useState(props.categoryValue)
 
     useEffect(() => {
         setBrandValue(props.categoryValue)
-    }, [props.categoryValue])
+        setPriceValueInput({...priceValueInput, priceValueInput1: props.priceValueInput1})
+        setPriceValueInput({...priceValueInput, priceValueInput2: props.priceValueInput2})
+    }, [props.categoryValue, props.priceValueInput1, props.priceValueInput2])
 
     const setCategoryProduct = (e: any) => {
         props.onSetCategory(e.target.value)
@@ -30,7 +38,7 @@ export default function ProductSearchFilters(props: Props) {
     const setAllCategoryProduct = (e: any) => {
         props.onSetAllCategory(e.target.value)
         setBrandValue(e.target.value)
-    }    
+    }
     
     return (
         <div className="container-left-item-product-search-list">
@@ -64,13 +72,13 @@ export default function ProductSearchFilters(props: Props) {
                 </div>
                 <div className="price-range-product-filter">
                     <div className="price-range-product">
-                        <input onChange={e => setPriceValue({...priceValue, value1: Number(e.target.value)})} type="number" placeholder='$ MIN' min={0} />
+                        <input onChange={e => setPriceValue({...priceValue, value1: Number(e.target.value)})} type="number" placeholder='$ MIN' min={0} defaultValue={priceValueInput.priceValueInput1} />
                     </div>
                     
                     <div className="space-price-range"> - </div>
 
                     <div className="price-range-product">
-                        <input onChange={e => setPriceValue({...priceValue, value2: Number(e.target.value)})} type="number" placeholder='$ MAX' min={0} />
+                        <input onChange={e => setPriceValue({...priceValue, value2: Number(e.target.value)})} type="number" placeholder='$ MAX' min={0} defaultValue={priceValueInput.priceValueInput2} />
                     </div>
                 </div>
                 <div className="price-range-product-btn-apply">

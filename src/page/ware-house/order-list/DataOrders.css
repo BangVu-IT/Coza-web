@@ -1,0 +1,43 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+a{
+    text-decoration: none;
+    color: #3D80F4;
+}
+
+ul{
+    list-style: none;
+}
+
+.data-order-list-table {
+    background-color: #FFFFFF;    
+    height: 100vh;  
+    padding: 0px 25px;
+    overflow: auto;
+}
+
+.data-order-list-table .row-email-order {
+    max-width: 100px;
+    word-wrap: break-word;
+}
+
+.data-order-list-table select {
+    padding: 10px 10px 10px 20px;
+    border-radius: 50px;
+}
+
+.data-order-list-table select:hover {
+    cursor: pointer;
+}
+
+.data-order-list-table select option {    
+    padding: 10px 5px;
+}
+
+.data-order-list-table option:hover {    
+    cursor: pointer;
+}
