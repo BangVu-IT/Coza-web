@@ -5,10 +5,7 @@ import OrderList from './order-list/OrderList';
 import './WareHouse.css';
 
 export default function WareHouse() {
-    return (
-        <div className="container-warehouse">
-            <HeaderWareHouse />
-            <ListProduct />
-        </div>
+    return (        
+        <ListProduct />
     )
 }

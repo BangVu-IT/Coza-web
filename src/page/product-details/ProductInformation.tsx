@@ -12,6 +12,7 @@ import '../product-details/ProductDetails.css';
 import { CartCreateContext } from '../../store/CartContext';
 import { cartController } from '../../controller/CartController';
 import { OrderProduct } from '../../model/OrderProduct';
+import { toast } from 'react-toastify';
 
 export default function ProductInformation() {
     const { orderId, getCartList } = useContext(CartCreateContext);
@@ -164,6 +165,11 @@ export default function ProductInformation() {
         cartController.addProductToCart(cartItem).then(res => {
             getCartList();
         });
+
+        toast.success("Add to cart successfully!", {
+            position: 'bottom-left',
+            autoClose: 1500
+        })
     }
 
     return (

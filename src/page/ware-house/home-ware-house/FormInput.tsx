@@ -60,7 +60,7 @@ export default function FormInput(props: Props) {
             quantity: 0
         }
     });
-    console.log(newProduct);
+    
     return (
         <div>
             <Modal

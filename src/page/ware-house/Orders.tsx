@@ -6,9 +6,6 @@ import './WareHouse.css';
 
 export default function Orders() {
     return (
-        <div className="container-warehouse">
-            <HeaderWareHouse />
-            <OrderList />
-        </div>
+        <OrderList />
     )
 }

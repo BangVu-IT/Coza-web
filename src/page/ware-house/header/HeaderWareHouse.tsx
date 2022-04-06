@@ -21,6 +21,18 @@ export default function HeaderWareHouse() {
                                 Orders
                             </li>
                         </Link>
+
+                        <Link to="/admin/brands">
+                            <li className='item-menu-level-2'>
+                                Brand
+                            </li>
+                        </Link>
+
+                        <Link to="/admin/users">
+                            <li className='item-menu-level-2'>
+                                User
+                            </li>
+                        </Link>
                     </ul>
                 </div>
             </div>

@@ -123,7 +123,7 @@ export function ListProduct() {
     }, [page, inputSearch, category, priceValue1, priceValue2, gender, sortPrice])
 
     const getList = (page: number, inputSearch: string, rowsPerPage: number, category: string, priceValue1: number, priceValue2: number, gender: string, sortPrice: string) => {
-        productController.productList(page, inputSearch, rowsPerPage, category, priceValue1, priceValue2, gender, sortPrice).then(res => {
+        productController.productListAdmin(page, inputSearch, rowsPerPage, category, priceValue1, priceValue2, gender, sortPrice).then(res => {
             setData(res.productListAll)
             setPageCount(res.pageNumberProduct);
         })

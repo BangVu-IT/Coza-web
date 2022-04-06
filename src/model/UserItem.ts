@@ -1,7 +1,9 @@
-export interface User {
+export interface UserItem {
     user_id: string;
     full_name: string;
-    phone_number: string;
+    user_name: string;
+    pass_word: string;
+    phone_number: number;
     email: string;
     address: string;
     post_code: string;

@@ -9,6 +9,7 @@ import { CartCreateContext } from '../../store/CartContext';
 import { UserCreateContext } from '../../store/UserContext';
 import { orderController } from '../../controller/OrderController';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 export default function Delivery() {
     const { orderId, getCartList, cartList } = useContext(CartCreateContext)
@@ -28,6 +29,10 @@ export default function Delivery() {
     const onPurchase = () => {
         orderController.delivery(dataOrder).then(res => {
             getCartList();                        
+        })
+        toast.success("Order Success!", {
+            position: 'bottom-left',
+            autoClose: 1500
         })
         navigate(`/orders`);
     }

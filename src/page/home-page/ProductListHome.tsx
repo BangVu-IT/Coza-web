@@ -8,6 +8,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Pagination, Navigation } from "swiper";
+import { Typography } from '@mui/material';
 
 export default function ProductListHome() {
     const [data, setData] = useState<ProductWithDetail[]>([]);
@@ -40,9 +41,6 @@ export default function ProductListHome() {
             setPageCount(Math.ceil(res.pageNumberProduct / rowsPerPage))
         })
     }
-
-    const data2 = data.slice(0, 4)
-    const data3 = data.slice(4, 8)
 
     return (
         <div className='product-list-container'>

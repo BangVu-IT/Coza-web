@@ -1,6 +1,6 @@
 import axios from "axios";
-import { setToken } from ".";
-import { Product, ProductWithDetail } from "../model/Product";
+import { setToken, setTokenAdmin } from ".";
+import { Brand, Product, ProductWithDetail } from "../model/Product";
 
 class ProductController {    
 
@@ -11,11 +11,36 @@ class ProductController {
             })
     }
 
+    async productListAdmin(page: number, inputSearch: string, rowsPerPage: number, category: string, priceValue1: number, priceValue2: number, gender: string, sortPrice: string) {
+        return setTokenAdmin.post('/products/admin', { page, inputSearch, rowsPerPage, category, priceValue1, priceValue2, gender, sortPrice })
+            .then(res => {
+                return res.data;
+            })
+    }
+
     async productBrandList() {
         return setToken.get('/brand/list')
             .then(res => {
                 return res.data;
             })
+    }
+
+    async addProductBrand(brand: Brand) {
+        return setToken.post('/add/brand', {brand}).then(res => {
+            return res.data;
+        })
+    }
+
+    async updateProductBrand(brand: Brand) {
+        return setToken.put('/update/brand', {brand}).then(res => {
+            return res.data;
+        })
+    }
+
+    async deleteProductBrand(id: string) {
+        return setToken.delete(`/delete/brand/${id}`).then(res => {
+            return res.data;
+        })
     }
 
     async productColorList() {

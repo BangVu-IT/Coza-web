@@ -13,6 +13,7 @@ import IconButton from '@mui/material/IconButton';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { CartCreateContext } from '../../store/CartContext';
 import { setToken } from '../../controller';
+import { toast } from 'react-toastify';
 
 export default function Header() {
     const { userInfo, changeUserInfo } = useContext(UserCreateContext);
@@ -32,6 +33,10 @@ export default function Header() {
         localStorage.removeItem("Authorization");
         setToken.defaults.headers.common['Authorization'] = "";
         changeUserInfo();
+        toast.success("Successful logout!", {
+            position: 'bottom-left',
+            autoClose: 1500
+        })
     }
 
     return (

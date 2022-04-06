@@ -1,0 +1,56 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+a{
+    text-decoration: none;    
+}
+
+ul{
+    list-style: none;
+}
+
+.fashion-banner-main-container {
+    width: 70%;
+    margin: auto;
+    margin-top: 40px;
+}
+
+.fashion-banner-item img {
+    width: 100%;    
+    border: 1px solid #E6E6E6;
+}
+
+.fashion-banner {
+    display: flex;    
+}
+
+.fashion-banner-item-content {
+    position: relative;
+    z-index: 1200;
+    top: -50%;
+    left: 6%;
+}
+
+.title-fashion-banner {
+    font-size: 28px;
+    font-weight: 600;
+    color: #333333;    
+}
+
+.content-title-product-fashion-banner {
+    margin-top: 10px;
+    color: #555555;
+    font-size: 16px;
+}
+
+.btn-purchase-product-fashion-banner {
+    color: #717FE1;
+    font-size: 16px;    
+}
+
+.btn-purchase-product-fashion-banner {
+    margin-top: 30%;
+}

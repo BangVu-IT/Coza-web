@@ -18,7 +18,8 @@ const userDefault = {
         phone_number: "",
         email: "",
         address: "",
-        post_code: ""
+        post_code: "",
+        role: ""
     },
     changeUserInfo: () => { }
 }
@@ -33,11 +34,12 @@ export function UserContext({ children }: ContextProvider) {
         phone_number: "",
         email: "",
         address: "",
-        post_code: ""
+        post_code: "",
+        role: ""
     });
 
     useEffect(() => {
-        userController.getMe().then(res => {
+        userController.getMe().then(res => {                    
             if (res != undefined) {
                 setUserInfo(res)
             } else {
@@ -47,7 +49,8 @@ export function UserContext({ children }: ContextProvider) {
                     phone_number: "",
                     email: "",
                     address: "",
-                    post_code: ""
+                    post_code: "",
+                    role: ""
                 })
             }
         })
@@ -64,7 +67,8 @@ export function UserContext({ children }: ContextProvider) {
                     phone_number: "",
                     email: "",
                     address: "",
-                    post_code: ""
+                    post_code: "",
+                    role: ""
                 })
             }
         })

@@ -1,0 +1,53 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+a{
+    text-decoration: none;
+    color: #3D80F4;
+}
+
+ul{
+    list-style: none;
+}
+
+.data-user-list-table {
+    background-color: #FFFFFF;    
+    height: 100vh;  
+    padding: 0px 25px;
+    overflow: auto;
+}
+
+.data-user-list-table .row-email-order {
+    max-width: 100px;
+    word-wrap: break-word;
+}
+
+.data-user-list-table select {
+    padding: 10px 10px 10px 20px;
+    border-radius: 50px;
+}
+
+.data-user-list-table select:hover {
+    cursor: pointer;
+}
+
+.data-user-list-table select option {    
+    padding: 10px 5px;
+}
+
+.data-user-list-table option:hover {    
+    cursor: pointer;
+}
+
+.icon-action-user svg {
+    font-size: 17px;
+}
+
+.icon-action-user svg:hover {
+    cursor: pointer;
+    color: #3676D2;
+    transition-duration: 0.2s;
+}

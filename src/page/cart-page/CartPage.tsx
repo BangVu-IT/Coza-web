@@ -6,6 +6,7 @@ import { CartCreateContext } from '../../store/CartContext';
 import { cartController } from '../../controller/CartController';
 import { Link } from 'react-router-dom';
 import cartEmpty from '../../img/search.png';
+import { toast } from 'react-toastify';
 
 export default function CartPage() {
     const { cartList, getCartList } = useContext(CartCreateContext)
@@ -30,8 +31,11 @@ export default function CartPage() {
         cartController.deleteCartProduct(cartId).then(res => {
             getCartList();
         })
+        toast.success("Successful delete!", {
+            position: 'bottom-left',
+            autoClose: 1500
+        })
     }
-
 
     return (
         cartList.length != 0 ?

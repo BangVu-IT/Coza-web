@@ -27,7 +27,7 @@ export default function Slide() {
                             <img src={slide1} alt="" />
                             <div className="slide-title-content">
                                 <div className="title-slide">
-                                    Women Collection 2018
+                                    Women Collection 2022
                                 </div>
 
                                 <div className="content-title-product">
@@ -50,7 +50,7 @@ export default function Slide() {
                                     JACKETS & COATS
                                 </div>
 
-                                <div className="btn-purchase-product">
+                                <div className="btn-purchase-product-2">
                                     <Link to="/product"><button>SHOP NOW</button></Link>
                                 </div>
                             </div>
@@ -59,7 +59,7 @@ export default function Slide() {
                             <img src={slide3} alt="" />
                             <div className="slide-title-content">
                                 <div className="title-slide">
-                                    Men Collection 2018
+                                    Men Collection 2022
                                 </div>
 
                                 <div className="content-title-product">
